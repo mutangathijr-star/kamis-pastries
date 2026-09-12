@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kami's Pastries | Staff & Admin Portal</title>
+  <title>Kami's Pastry Haven | Staff & Admin Portal</title>
   
   <!-- Inline SVG Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23C39B62'><path d='M12 2a4 4 0 0 0-4 4 4 4 0 0 0-2.5 7.1A5 5 0 0 0 4 17a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1 5 5 0 0 0-1.5-3.9A4 4 0 0 0 16 6a4 4 0 0 0-4-4zm-6 17v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-1H6z'/></svg>">
@@ -22,7 +22,6 @@
       min-height: 100vh;
     }
     
-    /* Login Gate Overlay */
     .login-gate {
       position: fixed;
       top: 0;
@@ -99,7 +98,6 @@
       display: none;
     }
 
-    /* KPI Analytics Cards */
     .kpi-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -139,7 +137,6 @@
       margin-top: 4px;
     }
     
-    /* Admin Grid Layout */
     .admin-grid {
       display: grid;
       grid-template-columns: 240px 1fr;
@@ -189,7 +186,6 @@
       border-left: 3px solid var(--gold-accent);
     }
     
-    /* Panels */
     .dashboard-panel {
       display: none;
     }
@@ -213,7 +209,6 @@
       padding-bottom: 16px;
     }
     
-    /* Tables */
     .table-container {
       background-color: var(--bg-card);
       border: 1px solid var(--border-color);
@@ -350,11 +345,10 @@
         <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor" style="width:24px; height:24px; color:var(--gold-accent); vertical-align:-3px;">
           <path d="M12 2C9.79 2 8 3.79 8 6C6.62 6 5.5 7.12 5.5 8.5C5.5 9.4 6 10.18 6.74 10.58C5.11 11.23 4 12.83 4 14.7C4 17.08 5.92 19 8.3 19H15.7C18.08 19 20 17.08 20 14.7C20 12.83 18.89 11.23 17.26 10.58C18 10.18 18.5 9.4 18.5 8.5C18.5 7.12 17.38 6 16 6C16 3.79 14.21 2 12 2ZM6 20H18V21C18 21.55 17.55 22 17 22H7C6.45 22 6 21.55 6 21V20Z"/>
         </svg>
-        <span class="logo-text"><span class="logo-accent">KAMIS</span> PASTRIES</span>
+        <span class="logo-text"><span class="logo-accent">KAMI'S</span> PASTRY HAVEN</span>
         <span style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--gold-accent); background:var(--gold-light); padding:3px 8px; border-radius:10px; margin-left:8px;">Staff Portal</span>
       </a>
       <div class="header-actions">
-        <!-- Theme Toggle -->
         <button id="themeToggle" class="icon-btn" aria-label="Toggle dark mode">
           <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
           <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -390,7 +384,7 @@
     <div class="kpi-grid">
       <div class="kpi-card">
         <span class="kpi-title">Total Orders Revenue</span>
-        <span class="kpi-value" id="kpiRevenue">$0.00</span>
+        <span class="kpi-value" id="kpiRevenue">Ksh 0</span>
         <span class="kpi-subtitle">From all store orders</span>
       </div>
       <div class="kpi-card">
@@ -466,7 +460,7 @@
         <div id="productsPanel" class="dashboard-panel">
           <div class="panel-header">
             <h2>Boutique Product Catalog</h2>
-            <button id="addProductBtn" class="btn btn-primary" style="padding: 8px 20px; font-size:14px;">+ Add New Commodity</button>
+            <button id="addProductBtn" class="btn btn-primary" style="padding: 8px 20px; font-size:14px;">+ Add New Cake</button>
           </div>
           
           <div class="table-container">
@@ -474,7 +468,7 @@
               <thead>
                 <tr>
                   <th>Thumbnail</th>
-                  <th>Product Name</th>
+                  <th>Cake Name</th>
                   <th>Category</th>
                   <th>Price</th>
                   <th>Servings / Ingredients</th>
@@ -507,18 +501,18 @@
               </div>
               
               <div class="form-group">
-                <label for="confPhone">Contact Phone</label>
-                <input type="text" id="confPhone" required placeholder="+1 (555) 902-1324">
+                <label for="confPhone">WhatsApp / Order Phone Number</label>
+                <input type="text" id="confPhone" required placeholder="0119796605">
               </div>
               
               <div class="form-group">
                 <label for="confAddress">Boutique Address</label>
-                <input type="text" id="confAddress" required placeholder="124 Bakers Court, Pastry Lane, Sweetwood">
+                <input type="text" id="confAddress" required placeholder="Kami's Pastry Haven Boutique">
               </div>
 
               <div class="form-group">
-                <label for="confInstagram">Instagram URL</label>
-                <input type="url" id="confInstagram" placeholder="https://instagram.com/kamispastries">
+                <label for="confInstagram">Instagram URL / Handle</label>
+                <input type="url" id="confInstagram" placeholder="https://instagram.com/kami_s_pastry_haven">
               </div>
 
               <div class="form-group">
@@ -539,7 +533,7 @@
   <div id="productModal" class="modal">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 id="modalProductTitle">Add New Specialty</h2>
+        <h2 id="modalProductTitle">Add New Cake</h2>
         <button id="closeProductModal" class="icon-btn" aria-label="Close modal">&times;</button>
       </div>
       
@@ -548,46 +542,39 @@
         
         <div class="form-grid">
           <div class="form-group span-2">
-            <label for="prodName">Pastry Name *</label>
-            <input type="text" id="prodName" required placeholder="Raspberry Vanilla Mille-Feuille">
+            <label for="prodName">Cake Flavor Name *</label>
+            <input type="text" id="prodName" required placeholder="Red Velvet Cake">
           </div>
           
           <div class="form-group">
-            <label for="prodPrice">Price ($ USD) *</label>
-            <input type="number" step="0.01" id="prodPrice" required placeholder="18.00">
+            <label for="prodPrice">Price (Ksh) *</label>
+            <input type="number" step="1" id="prodPrice" required placeholder="3000">
           </div>
           
           <div class="form-group">
             <label for="prodCategory">Category *</label>
             <select id="prodCategory" required>
-              <option value="Cakes">Luxury Cakes</option>
-              <option value="Pastries">Artisan Pastries</option>
-              <option value="Custom Celebrations">Custom Celebrations</option>
+              <option value="Classic Cakes">Classic Cakes (Ksh 2,500)</option>
+              <option value="Gourmet Cakes">Gourmet Cakes (Ksh 2,700)</option>
+              <option value="Chocolate Cakes">Chocolate Cakes (Ksh 2,800)</option>
+              <option value="Special Cakes">Special Cakes (Ksh 3,000+)</option>
             </select>
           </div>
           
           <div class="form-group span-2">
-            <label for="prodImage">Product Image Asset *</label>
-            <select id="prodImage" required>
-              <option value="assets/chocolate_cake.jpg">Chocolate Fudge Cake</option>
-              <option value="assets/strawberry_tart.jpg">Strawberry Tart</option>
-              <option value="assets/celebration_cake.jpg">Celebration Gold Cake</option>
-              <option value="assets/macarons.jpg">French Macarons Box</option>
-              <option value="assets/raspberry_cake.jpg">Raspberry Velvet Rose Cake</option>
-              <option value="assets/caramel_croissant.jpg">Salted Caramel Croissant</option>
-              <option value="assets/hazelnut_eclair.jpg">Dark Chocolate Hazelnut Eclair</option>
-              <option value="assets/wedding_cake.jpg">Royal Tiered Wedding Cake</option>
-            </select>
+            <label for="prodImage">Cake Photo File Path or URL *</label>
+            <input type="text" id="prodImage" required placeholder="assets/red_velvet.jpg or https://image-link...">
+            <small style="color:var(--text-secondary); display:block; margin-top:4px;">You can type an image path (e.g. <code>assets/vanilla.jpg</code>) or paste any image URL.</small>
           </div>
 
           <div class="form-group">
             <label for="prodBadge">Badge (Optional)</label>
-            <input type="text" id="prodBadge" placeholder="e.g. Bestseller, Fresh Seasonal">
+            <input type="text" id="prodBadge" placeholder="e.g. Bestseller, 1kg Whipped Cream">
           </div>
 
           <div class="form-group">
-            <label for="prodServings">Servings / Size</label>
-            <input type="text" id="prodServings" placeholder="e.g. Servings 8-10">
+            <label for="prodServings">Servings / Weight</label>
+            <input type="text" id="prodServings" placeholder="1 kg basis (Whipped Cream)">
           </div>
           
           <div class="form-group span-2">
@@ -597,7 +584,7 @@
 
           <div class="form-group span-2">
             <label for="prodIngredients">Key Ingredients</label>
-            <input type="text" id="prodIngredients" placeholder="e.g. Dark Belgian Chocolate, Fresh Cream, Almond Flour">
+            <input type="text" id="prodIngredients" placeholder="e.g. Fresh Whipped Cream, Pure Vanilla, Eggs, Flour">
           </div>
         </div>
         

@@ -31,10 +31,11 @@ const INITIAL_PRODUCTS = [
 const INITIAL_CONFIG = {
   "hours": "Mon-Sat: 8:00 AM - 8:00 PM, Sun: 9:00 AM - 6:00 PM",
   "email": "hello@kamispastries.com",
-  "phone": "+1 (555) 902-1324",
-  "address": "124 Bakers Court, Pastry Lane, Sweetwood",
+  "phone": "0119796605",
+  "whatsapp": "254119796605",
+  "address": "Kami's Pastry Haven Boutique",
   "facebook": "https://facebook.com/kamispastries",
-  "instagram": "https://instagram.com/kamispastries"
+  "instagram": "https://instagram.com/kami_s_pastry_haven"
 };
 
 let products = [];
@@ -122,24 +123,20 @@ function applyConfig() {
   const contactPhone = document.getElementById('contactPhone');
   const mapAddress = document.getElementById('mapAddress');
   const contactInsta = document.getElementById('contactInsta');
-  const contactFB = document.getElementById('contactFB');
 
   if (contactEmail) {
     contactEmail.textContent = storeConfig.email;
     contactEmail.href = `mailto:${storeConfig.email}`;
   }
   if (contactPhone) {
-    contactPhone.textContent = storeConfig.phone;
-    contactPhone.href = `tel:${storeConfig.phone.replace(/[^0-9+]/g, '')}`;
+    contactPhone.textContent = storeConfig.phone || '0119796605';
+    contactPhone.href = `tel:${(storeConfig.phone || '0119796605').replace(/\s+/g, '')}`;
   }
   if (mapAddress) {
-    mapAddress.textContent = storeConfig.address;
+    mapAddress.textContent = storeConfig.address || "Kami's Pastry Haven Boutique";
   }
-  if (contactInsta && storeConfig.instagram) {
-    contactInsta.href = storeConfig.instagram;
-  }
-  if (contactFB && storeConfig.facebook) {
-    contactFB.href = storeConfig.facebook;
+  if (contactInsta) {
+    contactInsta.href = storeConfig.instagram || "https://instagram.com/kami_s_pastry_haven";
   }
 }
 
@@ -152,7 +149,12 @@ function formatPrice(val) {
   return `Ksh ${parseInt(val).toLocaleString()}`;
 }
 
-// Render Products Grid
+function getWhatsAppUrl(text) {
+  const phone = (storeConfig.whatsapp || '254119796605').replace(/[^0-9]/g, '');
+  return `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+}
+
+// Render Products Grid with dual Order buttons on Phone & Laptop views
 function renderProducts() {
   const grid = document.getElementById('productsGrid');
   if (!grid) return;
@@ -190,6 +192,8 @@ function renderProducts() {
     card.className = 'product-card';
     
     const ratingStars = '★'.repeat(Math.round(product.rating || 5));
+    const waMessage = `Hello Kami's Pastry Haven! I would like to order: ${product.name} (1kg basis - ${formatPrice(product.price)})`;
+    const waUrl = getWhatsAppUrl(waMessage);
 
     card.innerHTML = `
       <div class="product-img-wrapper" data-qv="${product.id}">
@@ -205,10 +209,13 @@ function renderProducts() {
         <h3 class="product-title" data-qv="${product.id}">${product.name}</h3>
         <p class="product-desc">${product.description}</p>
         <div class="product-footer">
-          <span class="product-price">${formatPrice(product.price)}</span>
-          <button class="add-cart-btn" data-id="${product.id}" aria-label="Add to bag" title="Add to bag">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          </button>
+          <div class="product-price-row">
+            <span class="product-price">${formatPrice(product.price)}</span>
+          </div>
+          <div class="card-actions-row">
+            <button class="btn btn-primary add-cart-btn" data-id="${product.id}">🛒 Add to Bag</button>
+            <a href="${waUrl}" target="_blank" class="btn btn-whatsapp-card">💬 WhatsApp</a>
+          </div>
         </div>
       </div>
     `;
@@ -247,6 +254,12 @@ function openQuickViewModal(productId) {
   document.getElementById('qvRatingScore').textContent = qvProduct.rating || '5.0';
   document.getElementById('qvReviews').textContent = qvProduct.reviews || '42';
   document.getElementById('qvQtyDisplay').textContent = qvQuantity;
+
+  const waBtn = document.getElementById('qvWhatsAppBtn');
+  if (waBtn) {
+    const waMsg = `Hello Kami's Pastry Haven! I would like to order: ${qvProduct.name} (Qty: ${qvQuantity}, 1kg basis - ${formatPrice(qvProduct.price)})`;
+    waBtn.onclick = () => window.open(getWhatsAppUrl(waMsg), '_blank');
+  }
 
   const modal = document.getElementById('quickViewModal');
   const overlay = document.getElementById('modalOverlay');
@@ -297,6 +310,7 @@ function updateCartUI() {
   const itemsContainer = document.getElementById('cartItemsContainer');
   const checkoutBtn = document.getElementById('checkoutBtn');
   const cartTotalSum = document.getElementById('cartTotalSum');
+  const cartWhatsAppBtn = document.getElementById('cartWhatsAppBtn');
   
   if (!itemsContainer) return;
 
@@ -304,6 +318,7 @@ function updateCartUI() {
     itemsContainer.innerHTML = '<div class="empty-cart-message">Your bag is empty. Select your favorite cake flavor!</div>';
     checkoutBtn.disabled = true;
     cartTotalSum.textContent = 'Ksh 0';
+    if (cartWhatsAppBtn) cartWhatsAppBtn.style.display = 'none';
     return;
   }
 
@@ -311,10 +326,12 @@ function updateCartUI() {
   itemsContainer.innerHTML = '';
   
   let totalPrice = 0;
+  let itemsListText = '';
 
   cart.forEach(item => {
     const itemTotal = item.price * item.quantity;
     totalPrice += itemTotal;
+    itemsListText += `- ${item.name} x${item.quantity} (${formatPrice(itemTotal)})\n`;
 
     const row = document.createElement('div');
     row.className = 'cart-item';
@@ -337,6 +354,12 @@ function updateCartUI() {
   });
 
   cartTotalSum.textContent = formatPrice(totalPrice);
+
+  if (cartWhatsAppBtn) {
+    cartWhatsAppBtn.style.display = 'inline-flex';
+    const msg = `Hello Kami's Pastry Haven! I would like to order the following items from my bag:\n${itemsListText}\nTotal: ${formatPrice(totalPrice)}`;
+    cartWhatsAppBtn.href = getWhatsAppUrl(msg);
+  }
 
   document.querySelectorAll('.dec-qty').forEach(btn => {
     btn.addEventListener('click', (e) => adjustQuantity(e.target.getAttribute('data-id'), -1));
@@ -647,6 +670,29 @@ document.addEventListener('DOMContentLoaded', async () => {
     trackingForm.addEventListener('submit', handleTrackOrder);
   }
 
+  // Send WhatsApp Order Button in Checkout Modal
+  const sendWhatsAppOrderBtn = document.getElementById('sendWhatsAppOrderBtn');
+  if (sendWhatsAppOrderBtn) {
+    sendWhatsAppOrderBtn.addEventListener('click', () => {
+      const name = document.getElementById('custName').value || 'Guest';
+      const phone = document.getElementById('custPhone').value || 'N/A';
+      const orderType = document.querySelector('input[name="orderType"]:checked').value;
+      const address = document.getElementById('custAddress').value || 'N/A';
+      const notes = document.getElementById('orderNotes').value || 'None';
+
+      let itemsText = '';
+      let total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+      cart.forEach(i => {
+        itemsText += `- ${i.name} x${i.quantity} (${formatPrice(i.price * i.quantity)})\n`;
+      });
+
+      const message = `Hello Kami's Pastry Haven! I would like to place an order:\n\n*Customer:* ${name}\n*Phone:* ${phone}\n*Fulfillment:* ${orderType}\n${orderType === 'delivery' ? `*Address:* ${address}\n` : ''}*Special Request:* ${notes}\n\n*Order Items:*\n${itemsText}\n*Total:* ${formatPrice(total)}\n*50% Deposit:* ${formatPrice(total * 0.5)}`;
+
+      window.open(getWhatsAppUrl(message), '_blank');
+    });
+  }
+
   const checkoutForm = document.getElementById('checkoutForm');
   checkoutForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -688,6 +734,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     if (processedOrder) {
+      const waShareMsg = `Hello Kami's Pastry Haven! Here is my confirmed order receipt:\n\n*Order ID:* ${processedOrder.id}\n*Customer:* ${processedOrder.customerName}\n*Total:* ${formatPrice(processedOrder.total)}\n*50% Deposit:* ${formatPrice(processedOrder.total * 0.5)}`;
+      document.getElementById('successWhatsAppShareBtn').href = getWhatsAppUrl(waShareMsg);
+
       cart = [];
       saveCart();
       toggleCheckoutModal(false);
