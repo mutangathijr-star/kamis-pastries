@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kami's Pastries | Boutique Artisanal Bakery & Luxury Cakes</title>
+  <meta name="description" content="Discover Kami's Pastries - boutique bakery serving luxurious cakes, fresh pastries, fruit tarts, and custom celebration creations. Order online for pickup or delivery.">
+  
+  <!-- Inline SVG Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23C39B62'><path d='M12 2a4 4 0 0 0-4 4 4 4 0 0 0-2.5 7.1A5 5 0 0 0 4 17a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1 5 5 0 0 0-1.5-3.9A4 4 0 0 0 16 6a4 4 0 0 0-4-4zm-6 17v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-1H6z'/></svg>">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="light-mode">
+
+  <!-- Promo Top Announcement Bar -->
+  <div class="promo-bar" id="promoBar">
+    <div class="container promo-container">
+      <span class="promo-text">✨ Complimentary Local Delivery on orders over $50 — Use code <strong class="code-highlight">FRESH50</strong> at checkout!</span>
+      <button class="promo-close" id="closePromo" aria-label="Close promo banner">&times;</button>
+    </div>
+  </div>
+
+  <!-- Header & Navigation -->
+  <header class="main-header" id="mainHeader">
+    <div class="container header-container">
+      <!-- Brand Logo with Custom Pastry Chef Hat SVG -->
+      <a href="#" class="logo">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C9.79 2 8 3.79 8 6C6.62 6 5.5 7.12 5.5 8.5C5.5 9.4 6 10.18 6.74 10.58C5.11 11.23 4 12.83 4 14.7C4 17.08 5.92 19 8.3 19H15.7C18.08 19 20 17.08 20 14.7C20 12.83 18.89 11.23 17.26 10.58C18 10.18 18.5 9.4 18.5 8.5C18.5 7.12 17.38 6 16 6C16 3.79 14.21 2 12 2ZM6 20H18V21C18 21.55 17.55 22 17 22H7C6.45 22 6 21.55 6 21V20Z"/>
+        </svg>
+        <span class="logo-text"><span class="logo-accent">KAMIS</span> PASTRIES</span>
+      </a>
+      
+      <nav class="nav-menu" id="navMenu">
+        <a href="#hero" class="nav-link">Home</a>
+        <a href="#menu" class="nav-link">Menu Catalog</a>
+        <a href="#tracking" class="nav-link">Track Order</a>
+        <a href="#about" class="nav-link">About & Hours</a>
+        <a href="#reviews" class="nav-link">Reviews</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <a href="admin.html" class="nav-link admin-nav-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Staff Portal
+        </a>
+      </nav>
+      
+      <div class="header-actions">
+        <!-- Theme Toggle -->
+        <button id="themeToggle" class="icon-btn" aria-label="Toggle dark mode" title="Toggle Light/Dark Theme">
+          <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        
+        <!-- Cart Trigger -->
+        <button id="cartTrigger" class="cart-btn" aria-label="Open cart">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="cart-btn-label">Bag</span>
+          <span class="cart-count">0</span>
+        </button>
+        
+        <!-- Mobile Menu Toggle -->
+        <button id="mobileMenuToggle" class="icon-btn mobile-only" aria-label="Toggle menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero-section">
+    <div class="container hero-container">
+      <div class="hero-content">
+        <div class="hero-badge-pill">
+          <span class="star-rating">★ 4.9</span>
+          <span class="divider">•</span>
+          <span>1,400+ Connoisseur Reviews</span>
+        </div>
+        <h1 class="hero-title">Crafting Sweet Moments, One Slice at a Time</h1>
+        <p class="hero-description">Experience the sublime elegance of Kami's Pastries. We handcraft gourmet cakes, seasonal fruit tarts, crisp croissants, and delicate French macarons using 100% organic French butter & Belgian chocolate.</p>
+        
+        <div class="hero-actions-row">
+          <a href="#menu" class="btn btn-primary btn-gold-glow">
+            <span>Explore Menu</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="#tracking" class="btn btn-secondary">
+            <span>Track Order</span>
+          </a>
+        </div>
+
+        <div class="hero-highlights">
+          <div class="highlight-item">
+            <div class="highlight-icon">🍰</div>
+            <div>
+              <strong>Fresh Daily</strong>
+              <p>Baked each morning</p>
+            </div>
+          </div>
+          <div class="highlight-item">
+            <div class="highlight-icon">🌿</div>
+            <div>
+              <strong>100% Organic</strong>
+              <p>No artificial flavors</p>
+            </div>
+          </div>
+          <div class="highlight-item">
+            <div class="highlight-icon">🚚</div>
+            <div>
+              <strong>Fast Delivery</strong>
+              <p>Temperature controlled</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-image-wrapper">
+        <img src="assets/hero.jpg" alt="Exquisite Kami's Pastry Display Counter" class="hero-image">
+        
+        <div class="hero-glass-card hero-card-floating-1">
+          <span class="card-accent">Signature Delight</span>
+          <h4>Gold Leaf Celebration Cake</h4>
+          <p>Handcrafted with Tahitian Vanilla & 24k Edible Gold</p>
+        </div>
+
+        <div class="hero-glass-card hero-card-floating-2">
+          <div class="badge-icon-row">
+            <span class="badge-tag">Award Winner</span>
+            <span class="rating-stars">★★★★★</span>
+          </div>
+          <p class="quote">"The finest pastry boutique in the city!"</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section id="menu" class="menu-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Our Collections</span>
+        <h2 class="section-title">A Symphony of Flavours</h2>
+        <p class="section-desc">Browse our seasonal artisan selection. Click on any pastry for detailed ingredient breakdown and portion sizing.</p>
+      </div>
+      
+      <!-- Search & Sorting Controls -->
+      <div class="menu-controls-wrapper">
+        <!-- Search Bar -->
+        <div class="search-box">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="searchInput" placeholder="Search cakes, tarts, macarons..." aria-label="Search menu">
+        </div>
+
+        <!-- Sort Select -->
+        <div class="sort-box">
+          <label for="sortSelect">Sort By:</label>
+          <select id="sortSelect">
+            <option value="featured">Featured Specialties</option>
+            <option value="rating">Top Rated (5.0 ★)</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="name">Alphabetical</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Category Tabs -->
+      <div class="menu-tabs">
+        <button class="tab-btn active" data-category="all">All Specialties</button>
+        <button class="tab-btn" data-category="Cakes">Luxury Cakes</button>
+        <button class="tab-btn" data-category="Pastries">Artisan Pastries</button>
+        <button class="tab-btn" data-category="Custom Celebrations">Custom Celebrations</button>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-grid" id="productsGrid">
+        <div class="loading-spinner">
+          <div class="spinner-ring"></div>
+          <p>Loading delicate pastries...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Order Tracking Lookup Section -->
+  <section id="tracking" class="tracking-section">
+    <div class="container">
+      <div class="tracking-card">
+        <div class="section-header" style="margin-bottom: 24px;">
+          <span class="section-subtitle">Real-Time Updates</span>
+          <h2 class="section-title">Track Your Pastry Order</h2>
+          <p class="section-desc">Enter your order receipt code (e.g. <strong>ORD-4821</strong>) to view real-time preparation status from our bakery.</p>
+        </div>
+
+        <form id="trackingForm" class="tracking-form">
+          <div class="input-with-button">
+            <input type="text" id="trackingIdInput" required placeholder="Enter Receipt Code (e.g. ORD-1234)" style="text-transform: uppercase;">
+            <button type="submit" class="btn btn-primary">Check Status</button>
+          </div>
+        </form>
+
+        <!-- Tracking Result Display -->
+        <div id="trackingResult" class="tracking-result-box" style="display: none;">
+          <div class="order-info-header">
+            <div>
+              <h3>Order Receipt: <span id="trackResultId" class="code-highlight">ORD-0000</span></h3>
+              <p>Customer: <strong id="trackResultName">Jane Doe</strong> | Type: <span id="trackResultType">Pickup</span></p>
+            </div>
+            <div class="track-status-pill" id="trackStatusPill">In Progress</div>
+          </div>
+
+          <!-- Progress Stepper -->
+          <div class="stepper-timeline">
+            <div class="step-node active" id="step1">
+              <div class="node-circle">1</div>
+              <span>Received</span>
+            </div>
+            <div class="step-line" id="line1"></div>
+            <div class="step-node" id="step2">
+              <div class="node-circle">2</div>
+              <span>Baking</span>
+            </div>
+            <div class="step-line" id="line2"></div>
+            <div class="step-node" id="step3">
+              <div class="node-circle">3</div>
+              <span>Decorating</span>
+            </div>
+            <div class="step-line" id="line3"></div>
+            <div class="step-node" id="step4">
+              <div class="node-circle">4</div>
+              <span>Ready / Sent</span>
+            </div>
+          </div>
+
+          <div class="track-details-row">
+            <div>
+              <strong>Items Ordered:</strong>
+              <div id="trackResultItemsList"></div>
+            </div>
+            <div>
+              <strong>Total Amount:</strong>
+              <div id="trackResultTotal" class="price-highlight">$0.00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About & Operating Hours Section -->
+  <section id="about" class="about-section">
+    <div class="container about-container">
+      <div class="about-info">
+        <span class="section-subtitle">Our Story & Craft</span>
+        <h2 class="section-title">Dedicated to the Art of Baking</h2>
+        <p>Established with a passion for classic French baking and contemporary dessert design, Kami's Pastries combines exact culinary science with hand-finished artistic flair.</p>
+        <p>Every cake, tart, and eclair is baked fresh daily in small batches, ensuring exceptional texture, aroma, and delicate sweetness in every single bite.</p>
+        
+        <div class="hours-card">
+          <h3>Boutique Operating Hours</h3>
+          <ul class="hours-list" id="operatingHoursList">
+            <li><span class="day">Monday - Saturday</span> <span class="time" id="hoursWeek">8:00 AM - 8:00 PM</span></li>
+            <li><span class="day">Sunday</span> <span class="time" id="hoursSun">9:00 AM - 6:00 PM</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="about-map-card">
+        <h3>Find Our Boutique</h3>
+        <div class="map-placeholder">
+          <div class="map-overlay">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--gold-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+            <h4 id="mapAddress">124 Bakers Court, Pastry Lane, Sweetwood</h4>
+            <p>Ample customer parking & seating available on site.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer Reviews Section -->
+  <section id="reviews" class="reviews-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Testimonials</span>
+        <h2 class="section-title">Loved by Pastry Lovers</h2>
+        <p class="section-desc">Here is what our valued guests say about their sweet experiences with Kami's Pastries.</p>
+      </div>
+
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar">SC</div>
+            <div>
+              <h4>Sophia Chen</h4>
+              <span class="stars">★★★★★</span>
+            </div>
+          </div>
+          <p class="review-body">"The Gold Leaf Celebration Cake made my birthday unforgettable! Not only was it visually breathtaking, but the vanilla buttercream was heavenly and light."</p>
+          <span class="verified-tag">✓ Verified Order</span>
+        </div>
+
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar">MD</div>
+            <div>
+              <h4>Marcus Dubois</h4>
+              <span class="stars">★★★★★</span>
+            </div>
+          </div>
+          <p class="review-body">"As someone who lived in Paris, Kami's Macarons and Salted Caramel Croissants are as authentic as it gets. Crisp exterior, rich buttery center!"</p>
+          <span class="verified-tag">✓ Verified Order</span>
+        </div>
+
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar">EL</div>
+            <div>
+              <h4>Emily & Liam</h4>
+              <span class="stars">★★★★★</span>
+            </div>
+          </div>
+          <p class="review-body">"Ordered our 3-tier wedding cake from Kami's. Seamless delivery, flawless presentation, and guests are still talking about the raspberry sponge layers!"</p>
+          <span class="verified-tag">✓ Verified Order</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Accordion Section -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Questions & Answers</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+      </div>
+
+      <div class="faq-accordion" id="faqAccordion">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How far in advance should I order custom celebration cakes?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>For custom celebration cakes and tiered event cakes, we recommend placing your order at least 48-72 hours in advance. For standard pastries and smaller cakes, same-day pickup or next-day delivery is available!</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Do you offer gluten-free or nut-free options?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes! Several of our specialties (such as French Macarons) are made naturally with almond flour. We maintain strict hygiene standards in our kitchen, but please list any severe allergies in the special instructions at checkout.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>What are your local delivery areas and fees?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>We deliver within a 15-mile radius of our Sweetwood boutique. Orders over $50 qualify for <strong>FREE Delivery</strong> when applying the promo code <code>FRESH50</code>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter VIP Club Banner -->
+  <section class="newsletter-section">
+    <div class="container">
+      <div class="newsletter-card">
+        <div class="newsletter-content">
+          <h2>Join Kami's Sweet VIP Club</h2>
+          <p>Subscribe for seasonal flavor launches, secret tasting invites, and receive an instant <strong>10% OFF discount voucher</strong> for your next order!</p>
+        </div>
+        <form id="newsletterForm" class="newsletter-form">
+          <input type="email" id="vipEmail" required placeholder="Enter your email address...">
+          <button type="submit" class="btn btn-primary">Claim 10% Off</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section">
+    <div class="container contact-container">
+      <div class="contact-card">
+        <span class="section-subtitle">Get In Touch</span>
+        <h2 class="section-title">We'd Love to Hear From You</h2>
+        <p class="contact-desc">For wedding cake consultations, corporate catering, or special dietary inquiries, send us a message or give us a call.</p>
+        
+        <div class="contact-details">
+          <div class="contact-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <div>
+              <h4>Email Address</h4>
+              <a href="mailto:hello@kamispastries.com" id="contactEmail">hello@kamispastries.com</a>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <div>
+              <h4>Phone Number</h4>
+              <a href="tel:+15559021324" id="contactPhone">+1 (555) 902-1324</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="social-links-row">
+          <h4>Follow Our Journey:</h4>
+          <a href="#" class="social-link" id="contactInsta" target="_blank" aria-label="Follow us on Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            Instagram
+          </a>
+          <a href="#" class="social-link" id="contactFB" target="_blank" aria-label="Follow us on Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            Facebook
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container footer-container">
+      <div>
+        <h3 class="footer-logo">
+          <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor" style="width:20px; height:20px; display:inline-block; vertical-align:-3px; color:var(--gold-accent);">
+            <path d="M12 2C9.79 2 8 3.79 8 6C6.62 6 5.5 7.12 5.5 8.5C5.5 9.4 6 10.18 6.74 10.58C5.11 11.23 4 12.83 4 14.7C4 17.08 5.92 19 8.3 19H15.7C18.08 19 20 17.08 20 14.7C20 12.83 18.89 11.23 17.26 10.58C18 10.18 18.5 9.4 18.5 8.5C18.5 7.12 17.38 6 16 6C16 3.79 14.21 2 12 2ZM6 20H18V21C18 21.55 17.55 22 17 22H7C6.45 22 6 21.55 6 21V20Z"/>
+          </svg>
+          <span class="logo-accent">KAMIS</span> PASTRIES
+        </h3>
+        <p class="footer-tagline">Making life sweeter, one artisanal slice at a time.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Navigation</h4>
+        <a href="#hero">Home</a>
+        <a href="#menu">Menu Catalog</a>
+        <a href="#tracking">Track Order</a>
+        <a href="#about">About & Hours</a>
+        <a href="#contact">Contact Us</a>
+        <a href="admin.html">Staff Portal</a>
+      </div>
+      <div class="footer-legal">
+        <p>&copy; 2026 Kami's Pastries. All rights reserved.</p>
+        <p class="designer-credit">Handcrafted with Gourmet Aesthetics</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Product Quick View Modal -->
+  <div id="quickViewModal" class="modal">
+    <div class="modal-content quick-view-content">
+      <button id="closeQuickView" class="icon-btn modal-close-btn" aria-label="Close detail modal">&times;</button>
+      <div class="quick-view-grid">
+        <div class="quick-view-img-box">
+          <img id="qvImage" src="" alt="Product Image">
+          <span class="product-badge" id="qvBadge">Specialty</span>
+        </div>
+        <div class="quick-view-info">
+          <div class="quick-view-header">
+            <span class="qv-category" id="qvCategory">Cakes</span>
+            <div class="qv-rating"><span class="stars" id="qvRatingStars">★★★★★</span> <span id="qvRatingScore">4.9</span> (<span id="qvReviews">0</span> reviews)</div>
+          </div>
+          <h2 class="qv-title" id="qvTitle">Pastry Name</h2>
+          <div class="qv-price" id="qvPrice">$0.00</div>
+          
+          <p class="qv-description" id="qvDescription">Product description...</p>
+          
+          <div class="qv-details-box">
+            <div class="qv-detail-item">
+              <strong>Servings / Size:</strong>
+              <span id="qvServings">Individual</span>
+            </div>
+            <div class="qv-detail-item">
+              <strong>Key Ingredients:</strong>
+              <span id="qvIngredients">Organic butter, flour...</span>
+            </div>
+          </div>
+
+          <div class="qv-actions">
+            <div class="quantity-picker">
+              <button id="qvDecQty" class="qty-pick-btn">-</button>
+              <span id="qvQtyDisplay">1</span>
+              <button id="qvIncQty" class="qty-pick-btn">+</button>
+            </div>
+            <button id="qvAddToCartBtn" class="btn btn-primary btn-block">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shopping Cart Drawer -->
+  <div id="cartDrawer" class="cart-drawer">
+    <div class="cart-drawer-header">
+      <h3>Your Pastry Bag</h3>
+      <button id="closeCart" class="icon-btn" aria-label="Close cart">&times;</button>
+    </div>
+    
+    <div id="cartItemsContainer" class="cart-drawer-items">
+      <div class="empty-cart-message">Your bag is empty. Explore our menu to add sweet delights!</div>
+    </div>
+    
+    <div class="cart-drawer-footer">
+      <div class="cart-total-row">
+        <span>Total Amount:</span>
+        <span id="cartTotalSum" class="total-sum">$0.00</span>
+      </div>
+      <button id="checkoutBtn" class="btn btn-primary btn-block btn-gold-glow" disabled>Proceed to Checkout</button>
+    </div>
+  </div>
+  <div id="cartOverlay" class="drawer-overlay"></div>
+
+  <!-- Checkout Modal -->
+  <div id="checkoutModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Confirm Your Order</h2>
+        <button id="closeCheckout" class="icon-btn" aria-label="Close checkout">&times;</button>
+      </div>
+      
+      <form id="checkoutForm" class="checkout-form">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="custName">Full Name *</label>
+            <input type="text" id="custName" required placeholder="Jane Doe">
+          </div>
+          
+          <div class="form-group">
+            <label for="custPhone">Phone Number *</label>
+            <input type="tel" id="custPhone" required placeholder="+1 (555) 000-0000">
+          </div>
+          
+          <div class="form-group span-2">
+            <label for="custEmail">Email Address *</label>
+            <input type="email" id="custEmail" required placeholder="jane@example.com">
+          </div>
+          
+          <div class="form-group span-2">
+            <label>Order Type</label>
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="orderType" value="pickup" checked>
+                <span>Store Pickup</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="orderType" value="delivery">
+                <span>Home Delivery</span>
+              </label>
+            </div>
+          </div>
+          
+          <div class="form-group span-2" id="deliveryAddressGroup" style="display: none;">
+            <label for="custAddress">Delivery Address *</label>
+            <textarea id="custAddress" rows="2" placeholder="Street address, Apartment / Suite number, City"></textarea>
+          </div>
+          
+          <div class="form-group span-2">
+            <label for="promoCodeInput">Promo Code (Optional)</label>
+            <div class="promo-input-row">
+              <input type="text" id="promoCodeInput" placeholder="e.g. FRESH50 or WELCOME10" style="text-transform: uppercase;">
+              <button type="button" id="applyPromoBtn" class="btn btn-secondary" style="padding: 8px 16px;">Apply</button>
+            </div>
+            <div id="promoMessage" class="promo-msg" style="display:none;"></div>
+          </div>
+
+          <div class="form-group span-2">
+            <label for="orderNotes">Special Instructions / Cake Inscription (Optional)</label>
+            <textarea id="orderNotes" rows="2" placeholder="e.g. Please write 'Happy Birthday Sarah!' on the chocolate cake..."></textarea>
+          </div>
+        </div>
+        
+        <div class="checkout-summary-section">
+          <h3>Order Summary</h3>
+          <div id="checkoutSummaryItems" class="checkout-summary-items"></div>
+          
+          <div class="summary-line-row" id="discountRow" style="display: none; color: var(--success-color);">
+            <span>Discount Applied:</span>
+            <span id="checkoutDiscountAmount">-$0.00</span>
+          </div>
+
+          <div class="summary-total-row">
+            <span>Total Payable:</span>
+            <span id="checkoutSummaryTotal">$0.00</span>
+          </div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary btn-block btn-gold-glow">Place Order Now</button>
+      </form>
+    </div>
+  </div>
+  <div id="modalOverlay" class="modal-overlay"></div>
+
+  <!-- Success Notification Modal -->
+  <div id="successModal" class="modal success-modal">
+    <div class="modal-content success-content text-center">
+      <div class="success-icon-wrapper">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--gold-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
+      </div>
+      <h2>Order Placed Successfully!</h2>
+      <p class="order-id-label">Receipt Code: <strong id="successOrderId" class="code-highlight">ORD-0000</strong></p>
+      <p>Thank you for choosing Kami's Pastries! You can use your receipt code in the <strong>Track Order</strong> section anytime to view preparation updates.</p>
+      
+      <div class="success-details-card">
+        <p><strong>Customer:</strong> <span id="successCustName"></span></p>
+        <p><strong>Total Paid:</strong> <span id="successTotal"></span></p>
+        <p><strong>Type:</strong> <span id="successType"></span></p>
+      </div>
+
+      <button id="closeSuccessBtn" class="btn btn-primary btn-gold-glow">Return to Storefront</button>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>
