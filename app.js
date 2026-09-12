@@ -1,110 +1,31 @@
-// FRONTEND STOREFRONT CONTROLLER - KAMI'S PASTRIES
+// FRONTEND STOREFRONT CONTROLLER - KAMI'S PASTRY HAVEN
 
 const INITIAL_PRODUCTS = [
-  {
-    "id": "1",
-    "name": "Luxury Chocolate Fudge Cake",
-    "price": 28.00,
-    "category": "Cakes",
-    "badge": "Bestseller",
-    "rating": 4.9,
-    "reviews": 128,
-    "servings": "Serves 8-10",
-    "description": "Rich, moist layers of premium dark Belgian chocolate cake filled and iced with silky 70% cocoa ganache.",
-    "ingredients": "Organic Belgian Dark Chocolate, Pure Butter, Espresso, Organic Eggs, Madagascar Vanilla",
-    "image": "assets/chocolate_cake.jpg"
-  },
-  {
-    "id": "2",
-    "name": "Glazed Strawberry Tart",
-    "price": 22.00,
-    "category": "Pastries",
-    "badge": "Fresh Seasonal",
-    "rating": 4.8,
-    "reviews": 94,
-    "servings": "Individual / Shares 2",
-    "description": "A crisp buttery pastry shell filled with organic vanilla bean pastry cream, topped with fresh glazed strawberries.",
-    "ingredients": "Fresh Organic Strawberries, Vanilla Bean Custard, Butter Crust, Apricot Glaze",
-    "image": "assets/strawberry_tart.jpg"
-  },
-  {
-    "id": "3",
-    "name": "Elegant Gold Leaf Celebration Cake",
-    "price": 45.00,
-    "category": "Custom Celebrations",
-    "badge": "Chef's Special",
-    "rating": 5.0,
-    "reviews": 210,
-    "servings": "Serves 12-16",
-    "description": "Stunning two-tier vanilla bean cake finished with smooth Swiss buttercream, edible 24k gold leaf details, and organic floral elements.",
-    "ingredients": "Tahitian Vanilla Bean, Swiss Buttercream, Edible 24k Gold Leaf, Almond Flour",
-    "image": "assets/celebration_cake.jpg"
-  },
-  {
-    "id": "4",
-    "name": "Deluxe French Macarons Box",
-    "price": 18.00,
-    "category": "Pastries",
-    "badge": "Popular Gift",
-    "rating": 4.9,
-    "reviews": 315,
-    "servings": "Box of 6 Macarons",
-    "description": "A colorful box of 6 delicate French macarons in pistachio, lavender, dark chocolate, rose, and lemon flavours.",
-    "ingredients": "California Almond Flour, Organic Egg Whites, Ganache Fillings, Natural Botanical Extracts",
-    "image": "assets/macarons.jpg"
-  },
-  {
-    "id": "5",
-    "name": "Velvet Raspberry Rose Cake",
-    "price": 32.00,
-    "category": "Cakes",
-    "badge": "Signature Creation",
-    "rating": 5.0,
-    "reviews": 87,
-    "servings": "Serves 8-10",
-    "description": "Subtle rosewater sponge cake layered with fresh raspberry reduction and light white chocolate cream, garnished with fresh raspberries & gold accents.",
-    "ingredients": "Fresh Raspberries, Organic Rosewater, White Chocolate Mousse, Soft Vanilla Sponge",
-    "image": "assets/raspberry_cake.jpg"
-  },
-  {
-    "id": "6",
-    "name": "Salted Caramel Almond Croissant",
-    "price": 8.50,
-    "category": "Pastries",
-    "badge": "Baked Morningly",
-    "rating": 4.9,
-    "reviews": 162,
-    "servings": "Individual Pastry",
-    "description": "Golden flaky French butter croissant double-baked with frangipane almond cream, drizzled with warm sea salt caramel and toasted almonds.",
-    "ingredients": "French AOP Butter, Housemade Salted Caramel, Almond Cream, Flaked Almonds",
-    "image": "assets/caramel_croissant.jpg"
-  },
-  {
-    "id": "7",
-    "name": "Dark Chocolate Hazelnut Eclair",
-    "price": 9.00,
-    "category": "Pastries",
-    "badge": "Decadent",
-    "rating": 4.8,
-    "reviews": 105,
-    "servings": "Individual Pastry",
-    "description": "Classic French choux pastry casing stuffed with velvety hazelnut praline cream and crowned with mirror chocolate glaze.",
-    "ingredients": "Choux Pastry, Roasted Piedmont Hazelnuts, 70% Dark Chocolate Glaze, Whipped Cream",
-    "image": "assets/hazelnut_eclair.jpg"
-  },
-  {
-    "id": "8",
-    "name": "Royal Tiered Event & Wedding Cake",
-    "price": 120.00,
-    "category": "Custom Celebrations",
-    "badge": "Luxury Bespoke",
-    "rating": 5.0,
-    "reviews": 43,
-    "servings": "Serves 30-40",
-    "description": "A magnificent three-tier showpiece cake tailored for grand weddings & special galas, featuring delicate sugar flower art and gold accents.",
-    "ingredients": "Madagascar Bourbon Vanilla, White Velvet Cake, Fondant Accents, Edible 24k Gold Leaf",
-    "image": "assets/wedding_cake.jpg"
-  }
+  { "id": "1", "name": "Vanila Cake", "price": 2500, "category": "Classic Cakes", "badge": "Classic 1kg", "rating": 4.9, "reviews": 112, "servings": "1 kg basis (Whipped Cream)", "description": "Soft, fluffy vanilla sponge cake enveloped in silky whipped cream frosting. Simple, elegant, and delicious.", "ingredients": "Organic Vanilla Bean, Pure Butter, Fresh Whipped Cream, Eggs, Flour", "image": "assets/hero.jpg" },
+  { "id": "2", "name": "Strawberry Cake", "price": 2500, "category": "Classic Cakes", "badge": "Fresh Fruit 1kg", "rating": 4.8, "reviews": 98, "servings": "1 kg basis (Whipped Cream)", "description": "Delicate sponge layered with real strawberry compote and light whipped cream frosting.", "ingredients": "Fresh Strawberry Compote, Vanilla Sponge, Light Whipped Cream", "image": "assets/strawberry_tart.jpg" },
+  { "id": "3", "name": "Orange Cake", "price": 2500, "category": "Classic Cakes", "badge": "Citrus Specialty", "rating": 4.7, "reviews": 76, "servings": "1 kg basis (Whipped Cream)", "description": "Zesty and aromatic orange-infused sponge cake finished with smooth whipped cream.", "ingredients": "Fresh Orange Zest, Citrus Glaze, Whipped Cream", "image": "assets/celebration_cake.jpg" },
+  { "id": "4", "name": "Lemon Cake", "price": 2500, "category": "Classic Cakes", "badge": "Refreshing", "rating": 4.8, "reviews": 89, "servings": "1 kg basis (Whipped Cream)", "description": "Bright and tangy lemon sponge cake with lemon curd layers and fluffy cream.", "ingredients": "Fresh Lemon Juice, Lemon Curd, Whipped Cream Frosting", "image": "assets/celebration_cake.jpg" },
+  { "id": "5", "name": "Raspberry Cake", "price": 2500, "category": "Classic Cakes", "badge": "Popular", "rating": 4.9, "reviews": 145, "servings": "1 kg basis (Whipped Cream)", "description": "Moist vanilla layers filled with vibrant tart raspberry puree and smooth cream.", "ingredients": "Organic Raspberries, Vanilla Sponge, Fresh Whipped Cream", "image": "assets/raspberry_cake.jpg" },
+  { "id": "6", "name": "Passion Cake", "price": 2500, "category": "Classic Cakes", "badge": "Tropical", "rating": 4.9, "reviews": 104, "servings": "1 kg basis (Whipped Cream)", "description": "Exotic passionfruit infused sponge layered with sweet and tangy passion reduction cream.", "ingredients": "Fresh Passion Fruit Nectar, Vanilla Sponge, Whipped Cream", "image": "assets/strawberry_tart.jpg" },
+  { "id": "7", "name": "Pineapple Cake", "price": 2500, "category": "Classic Cakes", "badge": "Tropical Classic", "rating": 4.8, "reviews": 82, "servings": "1 kg basis (Whipped Cream)", "description": "Sweet pineapple pieces layered inside light whipped cream and sponge cake.", "ingredients": "Crushed Pineapple, Vanilla Sponge, Fresh Whipped Cream", "image": "assets/strawberry_tart.jpg" },
+  { "id": "8", "name": "Blueberry Cake", "price": 2700, "category": "Gourmet Cakes", "badge": "Customer Favorite", "rating": 4.9, "reviews": 160, "servings": "1 kg basis (Whipped Cream)", "description": "Lush blueberry compote folded into vanilla sponge layers and blueberry whipped cream.", "ingredients": "Fresh Blueberries, Blueberry Filling, Light Whipped Cream", "image": "assets/raspberry_cake.jpg" },
+  { "id": "9", "name": "Lemon Blueberry Cake", "price": 2700, "category": "Gourmet Cakes", "badge": "Signature Duo", "rating": 5.0, "reviews": 188, "servings": "1 kg basis (Whipped Cream)", "description": "The perfect balance of zesty lemon sponge and sweet blueberry reduction with whipped frosting.", "ingredients": "Fresh Lemon Zest, Organic Blueberries, Cream Cheese Whipped Frosting", "image": "assets/raspberry_cake.jpg" },
+  { "id": "10", "name": "Carrot Cake", "price": 2700, "category": "Gourmet Cakes", "badge": "Spiced Perfection", "rating": 4.9, "reviews": 135, "servings": "1 kg basis (Whipped Cream)", "description": "Moist spiced carrot sponge cake with cinnamon, walnuts, and silky cream frosting.", "ingredients": "Grated Carrots, Cinnamon, Walnuts, Cream Cheese Whipped Icing", "image": "assets/caramel_croissant.jpg" },
+  { "id": "11", "name": "Pinacolada Cake", "price": 2700, "category": "Gourmet Cakes", "badge": "Island Flavor", "rating": 4.8, "reviews": 92, "servings": "1 kg basis (Whipped Cream)", "description": "Tropical coconut and sweet pineapple folded into moist sponge cake with whipped cream.", "ingredients": "Desiccated Coconut, Pineapple Compote, Coconut Cream", "image": "assets/macarons.jpg" },
+  { "id": "12", "name": "Cookies & Cream Cake", "price": 2700, "category": "Gourmet Cakes", "badge": "Bestseller", "rating": 5.0, "reviews": 210, "servings": "1 kg basis (Whipped Cream)", "description": "Rich vanilla sponge loaded with crushed Oreo cookies and creamy cookie frosting.", "ingredients": "Crushed Chocolate Cookies, Vanilla Sponge, Oreo Whipped Cream", "image": "assets/chocolate_cake.jpg" },
+  { "id": "13", "name": "Bubblegum Cake", "price": 2700, "category": "Gourmet Cakes", "badge": "Kids Special", "rating": 4.7, "reviews": 68, "servings": "1 kg basis (Whipped Cream)", "description": "Fun, vibrant pastel blue and pink bubblegum-flavored sponge cake for joyful celebrations.", "ingredients": "Bubblegum Flavor, Pastel Whipped Cream, Rainbow Sprinkles", "image": "assets/macarons.jpg" },
+  { "id": "14", "name": "Funfetti Cake", "price": 2700, "category": "Gourmet Cakes", "badge": "Party Choice", "rating": 4.9, "reviews": 118, "servings": "1 kg basis (Whipped Cream)", "description": "Fluffy vanilla sponge studded with colorful sprinkles and sweet whipped cream frosting.", "ingredients": "Confetti Sprinkles, Vanilla Bean, Light Whipped Cream", "image": "assets/celebration_cake.jpg" },
+  { "id": "15", "name": "Tutti Frutti Vanilla Cake", "price": 2700, "category": "Gourmet Cakes", "badge": "Fruity Delight", "rating": 4.8, "reviews": 84, "servings": "1 kg basis (Whipped Cream)", "description": "Vanilla cake loaded with candied fruit bits and topped with velvety whipped cream.", "ingredients": "Candied Tutti Frutti, Vanilla Sponge, Whipped Cream", "image": "assets/celebration_cake.jpg" },
+  { "id": "16", "name": "Chocolate Fudge Cake", "price": 2800, "category": "Chocolate Cakes", "badge": "Top Seller 🍫", "rating": 5.0, "reviews": 245, "servings": "1 kg basis (Whipped Cream)", "description": "Deep, rich cocoa sponge layered with gooey dark chocolate fudge ganache.", "ingredients": "Dark Cocoa, Belgian Fudge, Chocolate Whipped Cream", "image": "assets/chocolate_cake.jpg" },
+  { "id": "17", "name": "Chocolate Mint Cake", "price": 2800, "category": "Chocolate Cakes", "badge": "Decadent", "rating": 4.9, "reviews": 116, "servings": "1 kg basis (Whipped Cream)", "description": "Rich chocolate layers complemented by cool, refreshing peppermint cream frosting.", "ingredients": "Dutch Processed Cocoa, Natural Peppermint Oil, Chocolate Ganache", "image": "assets/hazelnut_eclair.jpg" },
+  { "id": "18", "name": "Chocolate Orange Cake", "price": 2800, "category": "Chocolate Cakes", "badge": "Gourmet Twist", "rating": 4.8, "reviews": 95, "servings": "1 kg basis (Whipped Cream)", "description": "Velvety chocolate sponge infused with citrus orange notes and chocolate cream.", "ingredients": "Dark Chocolate, Orange Essence, Citrus Chocolate Icing", "image": "assets/chocolate_cake.jpg" },
+  { "id": "19", "name": "Classic Chocolate Cake", "price": 2800, "category": "Chocolate Cakes", "badge": "Pure Cocoa", "rating": 4.9, "reviews": 172, "servings": "1 kg basis (Whipped Cream)", "description": "Timeless moist chocolate cake frosted with smooth whipped chocolate cream.", "ingredients": "Pure Cocoa Powder, Chocolate Whipped Frosting, Vanilla", "image": "assets/chocolate_cake.jpg" },
+  { "id": "20", "name": "Red Velvet Cake", "price": 3000, "category": "Special Cakes", "badge": "Luxury Classic 🌟", "rating": 5.0, "reviews": 280, "servings": "1 kg basis (Whipped Cream)", "description": "Classic crimson cocoa sponge cake finished with luscious cream cheese whipped frosting.", "ingredients": "Crimson Cocoa Sponge, Cream Cheese, Pure Vanilla", "image": "assets/red_velvet.jpg" },
+  { "id": "21", "name": "Blackforest Cake", "price": 3000, "category": "Special Cakes", "badge": "Bestseller 🍒", "rating": 5.0, "reviews": 290, "servings": "1 kg basis (Whipped Cream)", "description": "Traditional dark chocolate sponge layered with sweet cherries and fluffy whipped cream.", "ingredients": "Dark Chocolate Sponge, Glazed Cherries, Chocolate Shavings", "image": "assets/blackforest.jpg" },
+  { "id": "22", "name": "White Forest Cake", "price": 3000, "category": "Special Cakes", "badge": "Elegant", "rating": 4.9, "reviews": 164, "servings": "1 kg basis (Whipped Cream)", "description": "Soft white vanilla sponge filled with juicy cherries and topped with white chocolate curls.", "ingredients": "Vanilla Sponge, Red Cherries, White Chocolate Shavings, Whipped Cream", "image": "assets/wedding_cake.jpg" },
+  { "id": "23", "name": "Oreo Mint Cake", "price": 3000, "category": "Special Cakes", "badge": "Chef Special", "rating": 4.9, "reviews": 122, "servings": "1 kg basis (Whipped Cream)", "description": "Chocolate cake layered with cool mint whipped cream and crushed Oreo cookie crunch.", "ingredients": "Oreo Cookies, Cool Peppermint Cream, Dark Chocolate Cake", "image": "assets/hazelnut_eclair.jpg" },
+  { "id": "24", "name": "Fruit Cake", "price": 3200, "category": "Special Cakes", "badge": "Rich & Fruity", "rating": 4.9, "reviews": 96, "servings": "1 kg basis (Whipped Cream)", "description": "Dense, luxurious cake loaded with premium dried fruits, nuts, and aromatic spices.", "ingredients": "Soaked Dried Fruits, Citrus Peel, Spiced Sponge, Whipped Cream", "image": "assets/celebration_cake.jpg" },
+  { "id": "25", "name": "Fruit Cake with Rum", "price": 3700, "category": "Special Cakes", "badge": "Premium Rum 🍾", "rating": 5.0, "reviews": 150, "servings": "1 kg basis (Whipped Cream)", "description": "Aged dark fruit cake infused with authentic dark rum, rich spices, and premium dried fruits.", "ingredients": "Dark Rum Infusion, Soaked Raisins & Cherries, Spiced Sponge, Whipped Cream", "image": "assets/celebration_cake.jpg" }
 ];
 
 const INITIAL_CONFIG = {
@@ -116,7 +37,6 @@ const INITIAL_CONFIG = {
   "instagram": "https://instagram.com/kamispastries"
 };
 
-// Global States
 let products = [];
 let storeConfig = {};
 let cart = JSON.parse(localStorage.getItem('kamis_cart')) || [];
@@ -124,16 +44,13 @@ let activeCategory = 'all';
 let searchQuery = '';
 let currentSort = 'featured';
 let isBackendOnline = false;
-let appliedDiscountRatio = 0;
 let qvProduct = null;
 let qvQuantity = 1;
 
 const API_URL = window.location.origin;
 
 function initializeLocalStorageDB() {
-  if (!localStorage.getItem('kamis_db_products')) {
-    localStorage.setItem('kamis_db_products', JSON.stringify(INITIAL_PRODUCTS));
-  }
+  localStorage.setItem('kamis_db_products', JSON.stringify(INITIAL_PRODUCTS));
   if (!localStorage.getItem('kamis_db_config')) {
     localStorage.setItem('kamis_db_config', JSON.stringify(INITIAL_CONFIG));
   }
@@ -145,9 +62,7 @@ function initializeLocalStorageDB() {
 async function checkBackendStatus() {
   try {
     const res = await fetch(`${API_URL}/api/config`);
-    if (res.ok) {
-      isBackendOnline = true;
-    }
+    if (res.ok) isBackendOnline = true;
   } catch (err) {
     isBackendOnline = false;
   }
@@ -233,19 +148,21 @@ function saveCart() {
   updateCartUI();
 }
 
-// Render Products Grid with Search, Filter & Sorting
+function formatPrice(val) {
+  return `Ksh ${parseInt(val).toLocaleString()}`;
+}
+
+// Render Products Grid
 function renderProducts() {
   const grid = document.getElementById('productsGrid');
   if (!grid) return;
 
   grid.innerHTML = '';
 
-  // 1. Filter Category
   let filtered = activeCategory === 'all'
     ? [...products]
     : products.filter(p => p.category === activeCategory);
 
-  // 2. Filter Search Query
   if (searchQuery.trim() !== '') {
     const q = searchQuery.toLowerCase().trim();
     filtered = filtered.filter(p => 
@@ -255,19 +172,16 @@ function renderProducts() {
     );
   }
 
-  // 3. Sorting
   if (currentSort === 'price-asc') {
-    filtered.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+    filtered.sort((a, b) => parseInt(a.price) - parseInt(b.price));
   } else if (currentSort === 'price-desc') {
-    filtered.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
-  } else if (currentSort === 'rating') {
-    filtered.sort((a, b) => (parseFloat(b.rating) || 0) - (parseFloat(a.rating) || 0));
+    filtered.sort((a, b) => parseInt(b.price) - parseInt(a.price));
   } else if (currentSort === 'name') {
     filtered.sort((a, b) => a.name.localeCompare(b.name));
   }
 
   if (filtered.length === 0) {
-    grid.innerHTML = '<div class="loading-spinner"><p>No sweet treats match your search query.</p></div>';
+    grid.innerHTML = '<div class="loading-spinner"><p>No cakes match your search query.</p></div>';
     return;
   }
 
@@ -279,19 +193,19 @@ function renderProducts() {
 
     card.innerHTML = `
       <div class="product-img-wrapper" data-qv="${product.id}">
-        <span class="product-badge">${product.badge || product.category}</span>
+        <span class="product-badge">${product.badge || '1kg Basis'}</span>
         <img src="${product.image}" alt="${product.name}" onerror="this.src='assets/chocolate_cake.jpg'">
         <button class="quick-view-btn" data-qv="${product.id}">Quick View</button>
       </div>
       <div class="product-info">
         <div class="product-rating-row">
           <span class="stars">${ratingStars}</span>
-          <span>${product.servings || 'Individual'}</span>
+          <span>${product.servings || '1kg Whipped Cream'}</span>
         </div>
         <h3 class="product-title" data-qv="${product.id}">${product.name}</h3>
         <p class="product-desc">${product.description}</p>
         <div class="product-footer">
-          <span class="product-price">$${parseFloat(product.price).toFixed(2)}</span>
+          <span class="product-price">${formatPrice(product.price)}</span>
           <button class="add-cart-btn" data-id="${product.id}" aria-label="Add to bag" title="Add to bag">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </button>
@@ -301,26 +215,21 @@ function renderProducts() {
     grid.appendChild(card);
   });
 
-  // Attach quick view listeners
   document.querySelectorAll('[data-qv]').forEach(elem => {
     elem.addEventListener('click', (e) => {
       e.stopPropagation();
-      const pid = elem.getAttribute('data-qv');
-      openQuickViewModal(pid);
+      openQuickViewModal(elem.getAttribute('data-qv'));
     });
   });
 
-  // Attach Add Cart Listeners
   document.querySelectorAll('.add-cart-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
-      const pid = e.currentTarget.getAttribute('data-id');
-      addToCart(pid);
+      addToCart(e.currentTarget.getAttribute('data-id'));
     });
   });
 }
 
-// Quick View Modal Controller
 function openQuickViewModal(productId) {
   qvProduct = products.find(p => p.id === productId);
   if (!qvProduct) return;
@@ -328,13 +237,13 @@ function openQuickViewModal(productId) {
   qvQuantity = 1;
 
   document.getElementById('qvImage').src = qvProduct.image;
-  document.getElementById('qvBadge').textContent = qvProduct.badge || qvProduct.category;
+  document.getElementById('qvBadge').textContent = qvProduct.badge || '1kg Whipped Cream';
   document.getElementById('qvCategory').textContent = qvProduct.category;
   document.getElementById('qvTitle').textContent = qvProduct.name;
-  document.getElementById('qvPrice').textContent = `$${parseFloat(qvProduct.price).toFixed(2)}`;
+  document.getElementById('qvPrice').textContent = formatPrice(qvProduct.price);
   document.getElementById('qvDescription').textContent = qvProduct.description;
-  document.getElementById('qvServings').textContent = qvProduct.servings || 'Individual';
-  document.getElementById('qvIngredients').textContent = qvProduct.ingredients || 'Fresh organic dairy, premium chocolate, real fruit';
+  document.getElementById('qvServings').textContent = qvProduct.servings || '1 kg basis (Whipped Cream)';
+  document.getElementById('qvIngredients').textContent = qvProduct.ingredients || 'Whipped cream, eggs, flour, real fruit compote';
   document.getElementById('qvRatingScore').textContent = qvProduct.rating || '5.0';
   document.getElementById('qvReviews').textContent = qvProduct.reviews || '42';
   document.getElementById('qvQtyDisplay').textContent = qvQuantity;
@@ -354,7 +263,6 @@ function closeQuickViewModal() {
   document.body.style.overflow = '';
 }
 
-// Cart Management
 function addToCart(productId, qty = 1) {
   const product = products.find(p => p.id === productId);
   if (!product) return;
@@ -393,9 +301,9 @@ function updateCartUI() {
   if (!itemsContainer) return;
 
   if (cart.length === 0) {
-    itemsContainer.innerHTML = '<div class="empty-cart-message">Your bag is empty. Explore our menu to add sweet delights!</div>';
+    itemsContainer.innerHTML = '<div class="empty-cart-message">Your bag is empty. Select your favorite cake flavor!</div>';
     checkoutBtn.disabled = true;
-    cartTotalSum.textContent = '$0.00';
+    cartTotalSum.textContent = 'Ksh 0';
     return;
   }
 
@@ -414,7 +322,7 @@ function updateCartUI() {
       <img src="${item.image}" alt="${item.name}" class="cart-item-img" onerror="this.src='assets/chocolate_cake.jpg'">
       <div class="cart-item-details">
         <div class="cart-item-name">${item.name}</div>
-        <div class="cart-item-price">$${parseFloat(item.price).toFixed(2)}</div>
+        <div class="cart-item-price">${formatPrice(item.price)}</div>
         <div class="cart-item-ctrl">
           <button class="quantity-btn dec-qty" data-id="${item.id}">-</button>
           <span class="quantity-display">${item.quantity}</span>
@@ -428,7 +336,7 @@ function updateCartUI() {
     itemsContainer.appendChild(row);
   });
 
-  cartTotalSum.textContent = `$${totalPrice.toFixed(2)}`;
+  cartTotalSum.textContent = formatPrice(totalPrice);
 
   document.querySelectorAll('.dec-qty').forEach(btn => {
     btn.addEventListener('click', (e) => adjustQuantity(e.target.getAttribute('data-id'), -1));
@@ -463,12 +371,11 @@ function removeFromCart(productId) {
 function updateCheckoutSummary() {
   const container = document.getElementById('checkoutSummaryItems');
   const sumTotal = document.getElementById('checkoutSummaryTotal');
-  const discountRow = document.getElementById('discountRow');
-  const discountAmount = document.getElementById('checkoutDiscountAmount');
+  const depositAmount = document.getElementById('depositAmount');
   if (!container) return;
 
   container.innerHTML = '';
-  let subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  let total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   
   cart.forEach(item => {
     const itemTotal = item.price * item.quantity;
@@ -476,23 +383,16 @@ function updateCheckoutSummary() {
     div.className = 'summary-item-line';
     div.style.cssText = 'display:flex; justify-content:space-between; margin-bottom:6px; font-size:14px;';
     div.innerHTML = `
-      <span>${item.name} <strong>x${item.quantity}</strong></span>
-      <span>$${itemTotal.toFixed(2)}</span>
+      <span>${item.name} <strong>x${item.quantity} (1kg)</strong></span>
+      <span>${formatPrice(itemTotal)}</span>
     `;
     container.appendChild(div);
   });
 
-  let discount = subtotal * appliedDiscountRatio;
-  let finalTotal = Math.max(0, subtotal - discount);
+  let deposit = total * 0.5;
 
-  if (appliedDiscountRatio > 0) {
-    discountRow.style.display = 'flex';
-    discountAmount.textContent = `-$${discount.toFixed(2)}`;
-  } else {
-    discountRow.style.display = 'none';
-  }
-
-  sumTotal.textContent = `$${finalTotal.toFixed(2)}`;
+  depositAmount.textContent = formatPrice(deposit);
+  sumTotal.textContent = formatPrice(total);
 }
 
 function toggleCartDrawer(isOpen) {
@@ -526,7 +426,6 @@ function toggleCheckoutModal(isOpen) {
   }
 }
 
-// Toast System
 function showToast(message) {
   const container = document.getElementById('toastContainer');
   if (!container) return;
@@ -547,7 +446,6 @@ function showToast(message) {
   }, 3000);
 }
 
-// Tracking Order Functionality
 function handleTrackOrder(e) {
   if (e) e.preventDefault();
   const input = document.getElementById('trackingIdInput').value.trim().toUpperCase();
@@ -559,21 +457,20 @@ function handleTrackOrder(e) {
   const resultBox = document.getElementById('trackingResult');
 
   if (!order) {
-    // Generate simulated order timeline for demonstration
     order = {
       id: input,
       customerName: "Valued Guest",
       type: "pickup",
-      total: 36.50,
+      total: 2800,
       status: "pending",
-      items: [{ name: "Artisan Pastry Box", quantity: 1 }]
+      items: [{ name: "Chocolate Fudge Cake (1kg)", quantity: 1 }]
     };
   }
 
   document.getElementById('trackResultId').textContent = order.id;
   document.getElementById('trackResultName').textContent = order.customerName;
   document.getElementById('trackResultType').textContent = order.type === 'delivery' ? 'Home Delivery' : 'Store Pickup';
-  document.getElementById('trackResultTotal').textContent = `$${parseFloat(order.total).toFixed(2)}`;
+  document.getElementById('trackResultTotal').textContent = formatPrice(order.total);
 
   let itemsHTML = '';
   order.items.forEach(i => {
@@ -581,7 +478,6 @@ function handleTrackOrder(e) {
   });
   document.getElementById('trackResultItemsList').innerHTML = itemsHTML;
 
-  // Stepper timeline logic
   const step1 = document.getElementById('step1');
   const step2 = document.getElementById('step2');
   const step3 = document.getElementById('step3');
@@ -604,7 +500,7 @@ function handleTrackOrder(e) {
     statusPill.style.color = 'var(--success-color)';
   } else {
     step2.classList.add('active');
-    line1.classList.active;
+    line1.classList.add('active');
     step3.classList.remove('active');
     step4.classList.remove('active');
     line2.classList.remove('active');
@@ -617,11 +513,9 @@ function handleTrackOrder(e) {
   resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
-// DOM Setup
 document.addEventListener('DOMContentLoaded', async () => {
   initializeLocalStorageDB();
   
-  // Theme Setup
   const themeToggle = document.getElementById('themeToggle');
   const sunIcon = document.querySelector('.sun-icon');
   const moonIcon = document.querySelector('.moon-icon');
@@ -647,7 +541,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
-  // Promo Bar Close
   const closePromo = document.getElementById('closePromo');
   if (closePromo) {
     closePromo.addEventListener('click', () => {
@@ -662,7 +555,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   renderProducts();
   updateCartUI();
 
-  // Search input event listener
   const searchInput = document.getElementById('searchInput');
   if (searchInput) {
     searchInput.addEventListener('input', (e) => {
@@ -671,7 +563,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // Sort Select event listener
   const sortSelect = document.getElementById('sortSelect');
   if (sortSelect) {
     sortSelect.addEventListener('change', (e) => {
@@ -680,7 +571,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // Category Tabs
   document.querySelectorAll('.tab-btn').forEach(tab => {
     tab.addEventListener('click', (e) => {
       document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -690,7 +580,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   });
 
-  // Quick View Quantity controls
   document.getElementById('qvDecQty').addEventListener('click', () => {
     if (qvQuantity > 1) {
       qvQuantity -= 1;
@@ -712,12 +601,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   document.getElementById('closeQuickView').addEventListener('click', closeQuickViewModal);
 
-  // Cart Drawer
   document.getElementById('cartTrigger').addEventListener('click', () => toggleCartDrawer(true));
   document.getElementById('closeCart').addEventListener('click', () => toggleCartDrawer(false));
   document.getElementById('cartOverlay').addEventListener('click', () => toggleCartDrawer(false));
 
-  // Mobile Menu
   const mobileToggle = document.getElementById('mobileMenuToggle');
   const navMenu = document.getElementById('navMenu');
   if (mobileToggle) {
@@ -728,7 +615,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     link.addEventListener('click', () => navMenu.classList.remove('active'));
   });
 
-  // Checkout Modal
   document.getElementById('checkoutBtn').addEventListener('click', () => {
     toggleCartDrawer(false);
     toggleCheckoutModal(true);
@@ -740,7 +626,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     closeQuickViewModal();
   });
 
-  // Order Type Radio change
   const orderTypeRadios = document.querySelectorAll('input[name="orderType"]');
   const deliveryAddressGroup = document.getElementById('deliveryAddressGroup');
   const custAddress = document.getElementById('custAddress');
@@ -757,69 +642,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   });
 
-  // Promo Code Apply
-  const applyPromoBtn = document.getElementById('applyPromoBtn');
-  const promoCodeInput = document.getElementById('promoCodeInput');
-  const promoMessage = document.getElementById('promoMessage');
-
-  applyPromoBtn.addEventListener('click', () => {
-    const code = promoCodeInput.value.trim().toUpperCase();
-    if (code === 'WELCOME10') {
-      appliedDiscountRatio = 0.10;
-      promoMessage.style.display = 'block';
-      promoMessage.style.color = 'var(--success-color)';
-      promoMessage.textContent = '✓ 10% VIP Discount Applied!';
-      updateCheckoutSummary();
-    } else if (code === 'FRESH50') {
-      appliedDiscountRatio = 0.15;
-      promoMessage.style.display = 'block';
-      promoMessage.style.color = 'var(--success-color)';
-      promoMessage.textContent = '✓ 15% Free Delivery Special Applied!';
-      updateCheckoutSummary();
-    } else {
-      promoMessage.style.display = 'block';
-      promoMessage.style.color = '#c94a4a';
-      promoMessage.textContent = 'Invalid promo code. Try WELCOME10';
-    }
-  });
-
-  // Track Order Form
   const trackingForm = document.getElementById('trackingForm');
   if (trackingForm) {
     trackingForm.addEventListener('submit', handleTrackOrder);
   }
 
-  // Newsletter Form
-  const newsletterForm = document.getElementById('newsletterForm');
-  if (newsletterForm) {
-    newsletterForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const email = document.getElementById('vipEmail').value;
-      showToast(`Welcome to VIP Club! Use code WELCOME10 for 10% off.`);
-      newsletterForm.reset();
-    });
-  }
-
-  // FAQ Accordion
-  document.querySelectorAll('.faq-question').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const item = e.currentTarget.parentElement;
-      const isActive = item.classList.contains('active');
-
-      document.querySelectorAll('.faq-item').forEach(i => {
-        i.classList.remove('active');
-        i.querySelector('.faq-answer').style.maxHeight = null;
-      });
-
-      if (!isActive) {
-        item.classList.add('active');
-        const answer = item.querySelector('.faq-answer');
-        answer.style.maxHeight = answer.scrollHeight + 'px';
-      }
-    });
-  });
-
-  // Submit Order Form
   const checkoutForm = document.getElementById('checkoutForm');
   checkoutForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -830,9 +657,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const orderType = document.querySelector('input[name="orderType"]:checked').value;
     const address = orderType === 'delivery' ? custAddress.value : '';
     const notes = document.getElementById('orderNotes').value;
-    
-    let subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    let total = Math.max(0, subtotal - (subtotal * appliedDiscountRatio));
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
     const orderPayload = {
       customerName,
@@ -889,7 +714,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     document.getElementById('successOrderId').textContent = order.id;
     document.getElementById('successCustName').textContent = order.customerName;
-    document.getElementById('successTotal').textContent = `$${parseFloat(order.total).toFixed(2)}`;
+    document.getElementById('successTotal').textContent = formatPrice(order.total);
+    document.getElementById('successDeposit').textContent = formatPrice(order.total * 0.5);
     document.getElementById('successType').textContent = order.type === 'delivery' ? 'Home Delivery' : 'Store Pickup';
 
     successModal.classList.add('active');
