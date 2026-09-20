@@ -1,10 +1,25 @@
 // FRONTEND STOREFRONT CONTROLLER - KAMI'S PASTRY HAVEN
 
-const CURRENT_DB_VERSION = "v6_all_25_photos_and_views_fix";
+const CURRENT_DB_VERSION = "v7_smart_photo_fallbacks";
 
 const SVG_FALLBACK_CAKE = "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23F6F0EC'/%3E%3Cpath d='M100 220 L300 220 L280 150 L120 150 Z' fill='%23C39B62'/%3E%3Cpath d='M120 150 L280 150 L260 100 L140 100 Z' fill='%23E5C397'/%3E%3Ccircle cx='200' cy='85' r='15' fill='%23C94A4A'/%3E%3Ctext x='200' y='260' font-family='serif' font-size='20' fill='%232B1D19' text-anchor='middle'%3EKami's Pastry Haven%3C/text%3E%3C/svg%3E";
 
-const ONLINE_FALLBACK_IMAGE = "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&auto=format&fit=crop";
+const FALLBACK_PHOTO_MAP = {
+  "Classic Cakes": "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=600&auto=format&fit=crop",
+  "Gourmet Cakes": "https://images.unsplash.com/photo-1535141192574-5d4897c13136?w=600&auto=format&fit=crop",
+  "Chocolate Cakes": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&auto=format&fit=crop",
+  "Special Cakes": "https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?w=600&auto=format&fit=crop"
+};
+
+function handleCakeImgError(imgElem, category) {
+  if (!imgElem.getAttribute('data-tried-online')) {
+    imgElem.setAttribute('data-tried-online', 'true');
+    imgElem.src = FALLBACK_PHOTO_MAP[category] || FALLBACK_PHOTO_MAP["Classic Cakes"];
+  } else {
+    imgElem.onerror = null;
+    imgElem.src = SVG_FALLBACK_CAKE;
+  }
+}
 
 const INITIAL_PRODUCTS = [
   { "id": "1", "name": "Vanila Cake", "price": 2500, "category": "Classic Cakes", "badge": "Classic 1kg", "rating": 4.9, "reviews": 112, "servings": "1 kg basis (Whipped Cream)", "description": "Soft, fluffy vanilla sponge cake enveloped in silky whipped cream frosting. Simple, elegant, and delicious.", "ingredients": "Organic Vanilla Bean, Pure Butter, Fresh Whipped Cream, Eggs, Flour", "image": "assets/vanilla_cake.jpg" },
@@ -212,7 +227,7 @@ function renderProducts() {
     card.innerHTML = `
       <div class="product-img-wrapper" data-qv="${product.id}">
         <span class="product-badge">${product.badge || '1kg Basis'}</span>
-        <img src="${product.image}" alt="${product.name}" onerror="this.onerror=null; this.src='${SVG_FALLBACK_CAKE}';">
+        <img src="${product.image}" alt="${product.name}" onerror="handleCakeImgError(this, '${product.category}')">
         <button class="quick-view-btn" data-qv="${product.id}">Quick View</button>
       </div>
       <div class="product-info">
@@ -259,9 +274,9 @@ function openQuickViewModal(productId) {
 
   const qvImg = document.getElementById('qvImage');
   qvImg.src = qvProduct.image;
+  qvImg.removeAttribute('data-tried-online');
   qvImg.onerror = function() {
-    this.onerror = null;
-    this.src = SVG_FALLBACK_CAKE;
+    handleCakeImgError(this, qvProduct.category);
   };
 
   document.getElementById('qvBadge').textContent = qvProduct.badge || '1kg Whipped Cream';
