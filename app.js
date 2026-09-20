@@ -1,31 +1,37 @@
 // FRONTEND STOREFRONT CONTROLLER - KAMI'S PASTRY HAVEN
 
+const CURRENT_DB_VERSION = "v6_all_25_photos_and_views_fix";
+
+const SVG_FALLBACK_CAKE = "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23F6F0EC'/%3E%3Cpath d='M100 220 L300 220 L280 150 L120 150 Z' fill='%23C39B62'/%3E%3Cpath d='M120 150 L280 150 L260 100 L140 100 Z' fill='%23E5C397'/%3E%3Ccircle cx='200' cy='85' r='15' fill='%23C94A4A'/%3E%3Ctext x='200' y='260' font-family='serif' font-size='20' fill='%232B1D19' text-anchor='middle'%3EKami's Pastry Haven%3C/text%3E%3C/svg%3E";
+
+const ONLINE_FALLBACK_IMAGE = "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&auto=format&fit=crop";
+
 const INITIAL_PRODUCTS = [
-  { "id": "1", "name": "Vanila Cake", "price": 2500, "category": "Classic Cakes", "badge": "Classic 1kg", "rating": 4.9, "reviews": 112, "servings": "1 kg basis (Whipped Cream)", "description": "Soft, fluffy vanilla sponge cake enveloped in silky whipped cream frosting. Simple, elegant, and delicious.", "ingredients": "Organic Vanilla Bean, Pure Butter, Fresh Whipped Cream, Eggs, Flour", "image": "assets/hero.jpg" },
-  { "id": "2", "name": "Strawberry Cake", "price": 2500, "category": "Classic Cakes", "badge": "Fresh Fruit 1kg", "rating": 4.8, "reviews": 98, "servings": "1 kg basis (Whipped Cream)", "description": "Delicate sponge layered with real strawberry compote and light whipped cream frosting.", "ingredients": "Fresh Strawberry Compote, Vanilla Sponge, Light Whipped Cream", "image": "assets/strawberry_tart.jpg" },
-  { "id": "3", "name": "Orange Cake", "price": 2500, "category": "Classic Cakes", "badge": "Citrus Specialty", "rating": 4.7, "reviews": 76, "servings": "1 kg basis (Whipped Cream)", "description": "Zesty and aromatic orange-infused sponge cake finished with smooth whipped cream.", "ingredients": "Fresh Orange Zest, Citrus Glaze, Whipped Cream", "image": "assets/celebration_cake.jpg" },
-  { "id": "4", "name": "Lemon Cake", "price": 2500, "category": "Classic Cakes", "badge": "Refreshing", "rating": 4.8, "reviews": 89, "servings": "1 kg basis (Whipped Cream)", "description": "Bright and tangy lemon sponge cake with lemon curd layers and fluffy cream.", "ingredients": "Fresh Lemon Juice, Lemon Curd, Whipped Cream Frosting", "image": "assets/celebration_cake.jpg" },
+  { "id": "1", "name": "Vanila Cake", "price": 2500, "category": "Classic Cakes", "badge": "Classic 1kg", "rating": 4.9, "reviews": 112, "servings": "1 kg basis (Whipped Cream)", "description": "Soft, fluffy vanilla sponge cake enveloped in silky whipped cream frosting. Simple, elegant, and delicious.", "ingredients": "Organic Vanilla Bean, Pure Butter, Fresh Whipped Cream, Eggs, Flour", "image": "assets/vanilla_cake.jpg" },
+  { "id": "2", "name": "Strawberry Cake", "price": 2500, "category": "Classic Cakes", "badge": "Fresh Fruit 1kg", "rating": 4.8, "reviews": 98, "servings": "1 kg basis (Whipped Cream)", "description": "Delicate sponge layered with real strawberry compote and light whipped cream frosting.", "ingredients": "Fresh Strawberry Compote, Vanilla Sponge, Light Whipped Cream", "image": "assets/strawberry_cake.jpg" },
+  { "id": "3", "name": "Orange Cake", "price": 2500, "category": "Classic Cakes", "badge": "Citrus Specialty", "rating": 4.7, "reviews": 76, "servings": "1 kg basis (Whipped Cream)", "description": "Zesty and aromatic orange-infused sponge cake finished with smooth whipped cream.", "ingredients": "Fresh Orange Zest, Citrus Glaze, Whipped Cream", "image": "assets/orange_cake.jpg" },
+  { "id": "4", "name": "Lemon Cake", "price": 2500, "category": "Classic Cakes", "badge": "Refreshing", "rating": 4.8, "reviews": 89, "servings": "1 kg basis (Whipped Cream)", "description": "Bright and tangy lemon sponge cake with lemon curd layers and fluffy cream.", "ingredients": "Fresh Lemon Juice, Lemon Curd, Whipped Cream Frosting", "image": "assets/lemon_cake.jpg" },
   { "id": "5", "name": "Raspberry Cake", "price": 2500, "category": "Classic Cakes", "badge": "Popular", "rating": 4.9, "reviews": 145, "servings": "1 kg basis (Whipped Cream)", "description": "Moist vanilla layers filled with vibrant tart raspberry puree and smooth cream.", "ingredients": "Organic Raspberries, Vanilla Sponge, Fresh Whipped Cream", "image": "assets/raspberry_cake.jpg" },
-  { "id": "6", "name": "Passion Cake", "price": 2500, "category": "Classic Cakes", "badge": "Tropical", "rating": 4.9, "reviews": 104, "servings": "1 kg basis (Whipped Cream)", "description": "Exotic passionfruit infused sponge layered with sweet and tangy passion reduction cream.", "ingredients": "Fresh Passion Fruit Nectar, Vanilla Sponge, Whipped Cream", "image": "assets/strawberry_tart.jpg" },
-  { "id": "7", "name": "Pineapple Cake", "price": 2500, "category": "Classic Cakes", "badge": "Tropical Classic", "rating": 4.8, "reviews": 82, "servings": "1 kg basis (Whipped Cream)", "description": "Sweet pineapple pieces layered inside light whipped cream and sponge cake.", "ingredients": "Crushed Pineapple, Vanilla Sponge, Fresh Whipped Cream", "image": "assets/strawberry_tart.jpg" },
-  { "id": "8", "name": "Blueberry Cake", "price": 2700, "category": "Gourmet Cakes", "badge": "Customer Favorite", "rating": 4.9, "reviews": 160, "servings": "1 kg basis (Whipped Cream)", "description": "Lush blueberry compote folded into vanilla sponge layers and blueberry whipped cream.", "ingredients": "Fresh Blueberries, Blueberry Filling, Light Whipped Cream", "image": "assets/raspberry_cake.jpg" },
-  { "id": "9", "name": "Lemon Blueberry Cake", "price": 2700, "category": "Gourmet Cakes", "badge": "Signature Duo", "rating": 5.0, "reviews": 188, "servings": "1 kg basis (Whipped Cream)", "description": "The perfect balance of zesty lemon sponge and sweet blueberry reduction with whipped frosting.", "ingredients": "Fresh Lemon Zest, Organic Blueberries, Cream Cheese Whipped Frosting", "image": "assets/raspberry_cake.jpg" },
-  { "id": "10", "name": "Carrot Cake", "price": 2700, "category": "Gourmet Cakes", "badge": "Spiced Perfection", "rating": 4.9, "reviews": 135, "servings": "1 kg basis (Whipped Cream)", "description": "Moist spiced carrot sponge cake with cinnamon, walnuts, and silky cream frosting.", "ingredients": "Grated Carrots, Cinnamon, Walnuts, Cream Cheese Whipped Icing", "image": "assets/caramel_croissant.jpg" },
-  { "id": "11", "name": "Pinacolada Cake", "price": 2700, "category": "Gourmet Cakes", "badge": "Island Flavor", "rating": 4.8, "reviews": 92, "servings": "1 kg basis (Whipped Cream)", "description": "Tropical coconut and sweet pineapple folded into moist sponge cake with whipped cream.", "ingredients": "Desiccated Coconut, Pineapple Compote, Coconut Cream", "image": "assets/macarons.jpg" },
-  { "id": "12", "name": "Cookies & Cream Cake", "price": 2700, "category": "Gourmet Cakes", "badge": "Bestseller", "rating": 5.0, "reviews": 210, "servings": "1 kg basis (Whipped Cream)", "description": "Rich vanilla sponge loaded with crushed Oreo cookies and creamy cookie frosting.", "ingredients": "Crushed Chocolate Cookies, Vanilla Sponge, Oreo Whipped Cream", "image": "assets/chocolate_cake.jpg" },
-  { "id": "13", "name": "Bubblegum Cake", "price": 2700, "category": "Gourmet Cakes", "badge": "Kids Special", "rating": 4.7, "reviews": 68, "servings": "1 kg basis (Whipped Cream)", "description": "Fun, vibrant pastel blue and pink bubblegum-flavored sponge cake for joyful celebrations.", "ingredients": "Bubblegum Flavor, Pastel Whipped Cream, Rainbow Sprinkles", "image": "assets/macarons.jpg" },
-  { "id": "14", "name": "Funfetti Cake", "price": 2700, "category": "Gourmet Cakes", "badge": "Party Choice", "rating": 4.9, "reviews": 118, "servings": "1 kg basis (Whipped Cream)", "description": "Fluffy vanilla sponge studded with colorful sprinkles and sweet whipped cream frosting.", "ingredients": "Confetti Sprinkles, Vanilla Bean, Light Whipped Cream", "image": "assets/celebration_cake.jpg" },
-  { "id": "15", "name": "Tutti Frutti Vanilla Cake", "price": 2700, "category": "Gourmet Cakes", "badge": "Fruity Delight", "rating": 4.8, "reviews": 84, "servings": "1 kg basis (Whipped Cream)", "description": "Vanilla cake loaded with candied fruit bits and topped with velvety whipped cream.", "ingredients": "Candied Tutti Frutti, Vanilla Sponge, Whipped Cream", "image": "assets/celebration_cake.jpg" },
-  { "id": "16", "name": "Chocolate Fudge Cake", "price": 2800, "category": "Chocolate Cakes", "badge": "Top Seller 🍫", "rating": 5.0, "reviews": 245, "servings": "1 kg basis (Whipped Cream)", "description": "Deep, rich cocoa sponge layered with gooey dark chocolate fudge ganache.", "ingredients": "Dark Cocoa, Belgian Fudge, Chocolate Whipped Cream", "image": "assets/chocolate_cake.jpg" },
-  { "id": "17", "name": "Chocolate Mint Cake", "price": 2800, "category": "Chocolate Cakes", "badge": "Decadent", "rating": 4.9, "reviews": 116, "servings": "1 kg basis (Whipped Cream)", "description": "Rich chocolate layers complemented by cool, refreshing peppermint cream frosting.", "ingredients": "Dutch Processed Cocoa, Natural Peppermint Oil, Chocolate Ganache", "image": "assets/hazelnut_eclair.jpg" },
-  { "id": "18", "name": "Chocolate Orange Cake", "price": 2800, "category": "Chocolate Cakes", "badge": "Gourmet Twist", "rating": 4.8, "reviews": 95, "servings": "1 kg basis (Whipped Cream)", "description": "Velvety chocolate sponge infused with citrus orange notes and chocolate cream.", "ingredients": "Dark Chocolate, Orange Essence, Citrus Chocolate Icing", "image": "assets/chocolate_cake.jpg" },
-  { "id": "19", "name": "Classic Chocolate Cake", "price": 2800, "category": "Chocolate Cakes", "badge": "Pure Cocoa", "rating": 4.9, "reviews": 172, "servings": "1 kg basis (Whipped Cream)", "description": "Timeless moist chocolate cake frosted with smooth whipped chocolate cream.", "ingredients": "Pure Cocoa Powder, Chocolate Whipped Frosting, Vanilla", "image": "assets/chocolate_cake.jpg" },
+  { "id": "6", "name": "Passion Cake", "price": 2500, "category": "Classic Cakes", "badge": "Tropical", "rating": 4.9, "reviews": 104, "servings": "1 kg basis (Whipped Cream)", "description": "Exotic passionfruit infused sponge layered with sweet and tangy passion reduction cream.", "ingredients": "Fresh Passion Fruit Nectar, Vanilla Sponge, Whipped Cream", "image": "assets/passion_cake.jpg" },
+  { "id": "7", "name": "Pineapple Cake", "price": 2500, "category": "Classic Cakes", "badge": "Tropical Classic", "rating": 4.8, "reviews": 82, "servings": "1 kg basis (Whipped Cream)", "description": "Sweet pineapple pieces layered inside light whipped cream and sponge cake.", "ingredients": "Crushed Pineapple, Vanilla Sponge, Fresh Whipped Cream", "image": "assets/pineapple_cake.jpg" },
+  { "id": "8", "name": "Blueberry Cake", "price": 2700, "category": "Gourmet Cakes", "badge": "Customer Favorite", "rating": 4.9, "reviews": 160, "servings": "1 kg basis (Whipped Cream)", "description": "Lush blueberry compote folded into vanilla sponge layers and blueberry whipped cream.", "ingredients": "Fresh Blueberries, Blueberry Filling, Light Whipped Cream", "image": "assets/blueberry_cake.jpg" },
+  { "id": "9", "name": "Lemon Blueberry Cake", "price": 2700, "category": "Gourmet Cakes", "badge": "Signature Duo", "rating": 5.0, "reviews": 188, "servings": "1 kg basis (Whipped Cream)", "description": "The perfect balance of zesty lemon sponge and sweet blueberry reduction with whipped frosting.", "ingredients": "Fresh Lemon Zest, Organic Blueberries, Cream Cheese Whipped Frosting", "image": "assets/lemon_blueberry_cake.jpg" },
+  { "id": "10", "name": "Carrot Cake", "price": 2700, "category": "Gourmet Cakes", "badge": "Spiced Perfection", "rating": 4.9, "reviews": 135, "servings": "1 kg basis (Whipped Cream)", "description": "Moist spiced carrot sponge cake with cinnamon, walnuts, and silky cream frosting.", "ingredients": "Grated Carrots, Cinnamon, Walnuts, Cream Cheese Whipped Icing", "image": "assets/carrot_cake.jpg" },
+  { "id": "11", "name": "Pinacolada Cake", "price": 2700, "category": "Gourmet Cakes", "badge": "Island Flavor", "rating": 4.8, "reviews": 92, "servings": "1 kg basis (Whipped Cream)", "description": "Tropical coconut and sweet pineapple folded into moist sponge cake with whipped cream.", "ingredients": "Desiccated Coconut, Pineapple Compote, Coconut Cream", "image": "assets/pinacolada_cake.jpg" },
+  { "id": "12", "name": "Cookies & Cream Cake", "price": 2700, "category": "Gourmet Cakes", "badge": "Bestseller", "rating": 5.0, "reviews": 210, "servings": "1 kg basis (Whipped Cream)", "description": "Rich vanilla sponge loaded with crushed Oreo cookies and creamy cookie frosting.", "ingredients": "Crushed Chocolate Cookies, Vanilla Sponge, Oreo Whipped Cream", "image": "assets/cookies_cream_cake.jpg" },
+  { "id": "13", "name": "Bubblegum Cake", "price": 2700, "category": "Gourmet Cakes", "badge": "Kids Special", "rating": 4.7, "reviews": 68, "servings": "1 kg basis (Whipped Cream)", "description": "Fun, vibrant pastel blue and pink bubblegum-flavored sponge cake for joyful celebrations.", "ingredients": "Bubblegum Flavor, Pastel Whipped Cream, Rainbow Sprinkles", "image": "assets/bubblegum_cake.jpg" },
+  { "id": "14", "name": "Funfetti Cake", "price": 2700, "category": "Gourmet Cakes", "badge": "Party Choice", "rating": 4.9, "reviews": 118, "servings": "1 kg basis (Whipped Cream)", "description": "Fluffy vanilla sponge studded with colorful sprinkles and sweet whipped cream frosting.", "ingredients": "Confetti Sprinkles, Vanilla Bean, Light Whipped Cream", "image": "assets/funfetti_cake.jpg" },
+  { "id": "15", "name": "Tutti Frutti Vanilla Cake", "price": 2700, "category": "Gourmet Cakes", "badge": "Fruity Delight", "rating": 4.8, "reviews": 84, "servings": "1 kg basis (Whipped Cream)", "description": "Vanilla cake loaded with candied fruit bits and topped with velvety whipped cream.", "ingredients": "Candied Tutti Frutti, Vanilla Sponge, Whipped Cream", "image": "assets/tutti_frutti_cake.jpg" },
+  { "id": "16", "name": "Chocolate Fudge Cake", "price": 2800, "category": "Chocolate Cakes", "badge": "Top Seller 🍫", "rating": 5.0, "reviews": 245, "servings": "1 kg basis (Whipped Cream)", "description": "Deep, rich cocoa sponge layered with gooey dark chocolate fudge ganache.", "ingredients": "Dark Cocoa, Belgian Fudge, Chocolate Whipped Cream", "image": "assets/chocolate_fudge_cake.jpg" },
+  { "id": "17", "name": "Chocolate Mint Cake", "price": 2800, "category": "Chocolate Cakes", "badge": "Decadent", "rating": 4.9, "reviews": 116, "servings": "1 kg basis (Whipped Cream)", "description": "Rich chocolate layers complemented by cool, refreshing peppermint cream frosting.", "ingredients": "Dutch Processed Cocoa, Natural Peppermint Oil, Chocolate Ganache", "image": "assets/chocolate_mint_cake.jpg" },
+  { "id": "18", "name": "Chocolate Orange Cake", "price": 2800, "category": "Chocolate Cakes", "badge": "Gourmet Twist", "rating": 4.8, "reviews": 95, "servings": "1 kg basis (Whipped Cream)", "description": "Velvety chocolate sponge infused with citrus orange notes and chocolate cream.", "ingredients": "Dark Chocolate, Orange Essence, Citrus Chocolate Icing", "image": "assets/chocolate_orange_cake.jpg" },
+  { "id": "19", "name": "Classic Chocolate Cake", "price": 2800, "category": "Chocolate Cakes", "badge": "Pure Cocoa", "rating": 4.9, "reviews": 172, "servings": "1 kg basis (Whipped Cream)", "description": "Timeless moist chocolate cake frosted with smooth whipped chocolate cream.", "ingredients": "Pure Cocoa Powder, Chocolate Whipped Frosting, Vanilla", "image": "assets/classic_chocolate_cake.jpg" },
   { "id": "20", "name": "Red Velvet Cake", "price": 3000, "category": "Special Cakes", "badge": "Luxury Classic 🌟", "rating": 5.0, "reviews": 280, "servings": "1 kg basis (Whipped Cream)", "description": "Classic crimson cocoa sponge cake finished with luscious cream cheese whipped frosting.", "ingredients": "Crimson Cocoa Sponge, Cream Cheese, Pure Vanilla", "image": "assets/red_velvet.jpg" },
   { "id": "21", "name": "Blackforest Cake", "price": 3000, "category": "Special Cakes", "badge": "Bestseller 🍒", "rating": 5.0, "reviews": 290, "servings": "1 kg basis (Whipped Cream)", "description": "Traditional dark chocolate sponge layered with sweet cherries and fluffy whipped cream.", "ingredients": "Dark Chocolate Sponge, Glazed Cherries, Chocolate Shavings", "image": "assets/blackforest.jpg" },
-  { "id": "22", "name": "White Forest Cake", "price": 3000, "category": "Special Cakes", "badge": "Elegant", "rating": 4.9, "reviews": 164, "servings": "1 kg basis (Whipped Cream)", "description": "Soft white vanilla sponge filled with juicy cherries and topped with white chocolate curls.", "ingredients": "Vanilla Sponge, Red Cherries, White Chocolate Shavings, Whipped Cream", "image": "assets/wedding_cake.jpg" },
-  { "id": "23", "name": "Oreo Mint Cake", "price": 3000, "category": "Special Cakes", "badge": "Chef Special", "rating": 4.9, "reviews": 122, "servings": "1 kg basis (Whipped Cream)", "description": "Chocolate cake layered with cool mint whipped cream and crushed Oreo cookie crunch.", "ingredients": "Oreo Cookies, Cool Peppermint Cream, Dark Chocolate Cake", "image": "assets/hazelnut_eclair.jpg" },
-  { "id": "24", "name": "Fruit Cake", "price": 3200, "category": "Special Cakes", "badge": "Rich & Fruity", "rating": 4.9, "reviews": 96, "servings": "1 kg basis (Whipped Cream)", "description": "Dense, luxurious cake loaded with premium dried fruits, nuts, and aromatic spices.", "ingredients": "Soaked Dried Fruits, Citrus Peel, Spiced Sponge, Whipped Cream", "image": "assets/celebration_cake.jpg" },
-  { "id": "25", "name": "Fruit Cake with Rum", "price": 3700, "category": "Special Cakes", "badge": "Premium Rum 🍾", "rating": 5.0, "reviews": 150, "servings": "1 kg basis (Whipped Cream)", "description": "Aged dark fruit cake infused with authentic dark rum, rich spices, and premium dried fruits.", "ingredients": "Dark Rum Infusion, Soaked Raisins & Cherries, Spiced Sponge, Whipped Cream", "image": "assets/celebration_cake.jpg" }
+  { "id": "22", "name": "White Forest Cake", "price": 3000, "category": "Special Cakes", "badge": "Elegant", "rating": 4.9, "reviews": 164, "servings": "1 kg basis (Whipped Cream)", "description": "Soft white vanilla sponge filled with juicy cherries and topped with white chocolate curls.", "ingredients": "Vanilla Sponge, Red Cherries, White Chocolate Shavings, Whipped Cream", "image": "assets/white_forest_cake.jpg" },
+  { "id": "23", "name": "Oreo Mint Cake", "price": 3000, "category": "Special Cakes", "badge": "Chef Special", "rating": 4.9, "reviews": 122, "servings": "1 kg basis (Whipped Cream)", "description": "Chocolate cake layered with cool mint whipped cream and crushed Oreo cookie crunch.", "ingredients": "Oreo Cookies, Cool Peppermint Cream, Dark Chocolate Cake", "image": "assets/oreo_mint_cake.jpg" },
+  { "id": "24", "name": "Fruit Cake", "price": 3200, "category": "Special Cakes", "badge": "Rich & Fruity", "rating": 4.9, "reviews": 96, "servings": "1 kg basis (Whipped Cream)", "description": "Dense, luxurious cake loaded with premium dried fruits, nuts, and aromatic spices.", "ingredients": "Soaked Dried Fruits, Citrus Peel, Spiced Sponge, Whipped Cream", "image": "assets/fruit_cake.jpg" },
+  { "id": "25", "name": "Fruit Cake with Rum", "price": 3700, "category": "Special Cakes", "badge": "Premium Rum 🍾", "rating": 5.0, "reviews": 150, "servings": "1 kg basis (Whipped Cream)", "description": "Aged dark fruit cake infused with authentic dark rum, rich spices, and premium dried fruits.", "ingredients": "Dark Rum Infusion, Soaked Raisins & Cherries, Spiced Sponge, Whipped Cream", "image": "assets/fruit_cake_rum.jpg" }
 ];
 
 const INITIAL_CONFIG = {
@@ -51,7 +57,15 @@ let qvQuantity = 1;
 const API_URL = window.location.origin;
 
 function initializeLocalStorageDB() {
-  localStorage.setItem('kamis_db_products', JSON.stringify(INITIAL_PRODUCTS));
+  const version = localStorage.getItem('kamis_db_version');
+  if (version !== CURRENT_DB_VERSION) {
+    localStorage.removeItem('kamis_db_products');
+    localStorage.setItem('kamis_db_version', CURRENT_DB_VERSION);
+  }
+  
+  if (!localStorage.getItem('kamis_db_products')) {
+    localStorage.setItem('kamis_db_products', JSON.stringify(INITIAL_PRODUCTS));
+  }
   if (!localStorage.getItem('kamis_db_config')) {
     localStorage.setItem('kamis_db_config', JSON.stringify(INITIAL_CONFIG));
   }
@@ -154,7 +168,7 @@ function getWhatsAppUrl(text) {
   return `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
 }
 
-// Render Products Grid with dual Order buttons on Phone & Laptop views
+// Render Products Grid
 function renderProducts() {
   const grid = document.getElementById('productsGrid');
   if (!grid) return;
@@ -198,7 +212,7 @@ function renderProducts() {
     card.innerHTML = `
       <div class="product-img-wrapper" data-qv="${product.id}">
         <span class="product-badge">${product.badge || '1kg Basis'}</span>
-        <img src="${product.image}" alt="${product.name}" onerror="this.src='assets/chocolate_cake.jpg'">
+        <img src="${product.image}" alt="${product.name}" onerror="this.onerror=null; this.src='${SVG_FALLBACK_CAKE}';">
         <button class="quick-view-btn" data-qv="${product.id}">Quick View</button>
       </div>
       <div class="product-info">
@@ -243,7 +257,13 @@ function openQuickViewModal(productId) {
 
   qvQuantity = 1;
 
-  document.getElementById('qvImage').src = qvProduct.image;
+  const qvImg = document.getElementById('qvImage');
+  qvImg.src = qvProduct.image;
+  qvImg.onerror = function() {
+    this.onerror = null;
+    this.src = SVG_FALLBACK_CAKE;
+  };
+
   document.getElementById('qvBadge').textContent = qvProduct.badge || '1kg Whipped Cream';
   document.getElementById('qvCategory').textContent = qvProduct.category;
   document.getElementById('qvTitle').textContent = qvProduct.name;
@@ -336,7 +356,7 @@ function updateCartUI() {
     const row = document.createElement('div');
     row.className = 'cart-item';
     row.innerHTML = `
-      <img src="${item.image}" alt="${item.name}" class="cart-item-img" onerror="this.src='assets/chocolate_cake.jpg'">
+      <img src="${item.image}" alt="${item.name}" class="cart-item-img" onerror="this.onerror=null; this.src='${SVG_FALLBACK_CAKE}';">
       <div class="cart-item-details">
         <div class="cart-item-name">${item.name}</div>
         <div class="cart-item-price">${formatPrice(item.price)}</div>
@@ -670,7 +690,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     trackingForm.addEventListener('submit', handleTrackOrder);
   }
 
-  // Send WhatsApp Order Button in Checkout Modal
   const sendWhatsAppOrderBtn = document.getElementById('sendWhatsAppOrderBtn');
   if (sendWhatsAppOrderBtn) {
     sendWhatsAppOrderBtn.addEventListener('click', () => {
