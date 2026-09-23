@@ -1,20 +1,41 @@
 // FRONTEND STOREFRONT CONTROLLER - KAMI'S PASTRY HAVEN
 
-const CURRENT_DB_VERSION = "v7_smart_photo_fallbacks";
+const CURRENT_DB_VERSION = "v8_unique_per_cake_photos_fixed";
 
 const SVG_FALLBACK_CAKE = "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23F6F0EC'/%3E%3Cpath d='M100 220 L300 220 L280 150 L120 150 Z' fill='%23C39B62'/%3E%3Cpath d='M120 150 L280 150 L260 100 L140 100 Z' fill='%23E5C397'/%3E%3Ccircle cx='200' cy='85' r='15' fill='%23C94A4A'/%3E%3Ctext x='200' y='260' font-family='serif' font-size='20' fill='%232B1D19' text-anchor='middle'%3EKami's Pastry Haven%3C/text%3E%3C/svg%3E";
 
-const FALLBACK_PHOTO_MAP = {
-  "Classic Cakes": "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=600&auto=format&fit=crop",
-  "Gourmet Cakes": "https://images.unsplash.com/photo-1535141192574-5d4897c13136?w=600&auto=format&fit=crop",
-  "Chocolate Cakes": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&auto=format&fit=crop",
-  "Special Cakes": "https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?w=600&auto=format&fit=crop"
+const UNIQUE_FALLBACK_URLS = {
+  "1": "https://images.unsplash.com/photo-1535141192574-5d4897c13136?w=600&auto=format&fit=crop",
+  "2": "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=600&auto=format&fit=crop",
+  "3": "https://images.unsplash.com/photo-1519869325930-281384150729?w=600&auto=format&fit=crop",
+  "4": "https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?w=600&auto=format&fit=crop",
+  "5": "https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=600&auto=format&fit=crop",
+  "6": "https://images.unsplash.com/photo-1542826438-bd32fcf33370?w=600&auto=format&fit=crop",
+  "7": "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=600&auto=format&fit=crop",
+  "8": "https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=600&auto=format&fit=crop",
+  "9": "https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=600&auto=format&fit=crop",
+  "10": "https://images.unsplash.com/photo-1622896784083-cc051313dbab?w=600&auto=format&fit=crop",
+  "11": "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?w=600&auto=format&fit=crop",
+  "12": "https://images.unsplash.com/photo-1562777717-dc6984f65a63?w=600&auto=format&fit=crop",
+  "13": "https://images.unsplash.com/photo-1557925923-cd4648e211a0?w=600&auto=format&fit=crop",
+  "14": "https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?w=600&auto=format&fit=crop",
+  "15": "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=600&auto=format&fit=crop",
+  "16": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&auto=format&fit=crop",
+  "17": "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=600&auto=format&fit=crop",
+  "18": "https://images.unsplash.com/photo-1582293041079-7814c2f12063?w=600&auto=format&fit=crop",
+  "19": "https://images.unsplash.com/photo-1511018556340-d16986a1c194?w=600&auto=format&fit=crop",
+  "20": "https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?w=600&auto=format&fit=crop",
+  "21": "https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=600&auto=format&fit=crop",
+  "22": "https://images.unsplash.com/photo-1535141192574-5d4897c13136?w=600&auto=format&fit=crop",
+  "23": "https://images.unsplash.com/photo-1562777717-dc6984f65a63?w=600&auto=format&fit=crop",
+  "24": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&auto=format&fit=crop",
+  "25": "https://images.unsplash.com/photo-1579372786545-d24232daf58c?w=600&auto=format&fit=crop"
 };
 
-function handleCakeImgError(imgElem, category) {
+function handleCakeImgError(imgElem, productId) {
   if (!imgElem.getAttribute('data-tried-online')) {
     imgElem.setAttribute('data-tried-online', 'true');
-    imgElem.src = FALLBACK_PHOTO_MAP[category] || FALLBACK_PHOTO_MAP["Classic Cakes"];
+    imgElem.src = UNIQUE_FALLBACK_URLS[productId] || "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&auto=format&fit=crop";
   } else {
     imgElem.onerror = null;
     imgElem.src = SVG_FALLBACK_CAKE;
@@ -227,7 +248,7 @@ function renderProducts() {
     card.innerHTML = `
       <div class="product-img-wrapper" data-qv="${product.id}">
         <span class="product-badge">${product.badge || '1kg Basis'}</span>
-        <img src="${product.image}" alt="${product.name}" onerror="handleCakeImgError(this, '${product.category}')">
+        <img src="${product.image}" alt="${product.name}" onerror="handleCakeImgError(this, '${product.id}')">
         <button class="quick-view-btn" data-qv="${product.id}">Quick View</button>
       </div>
       <div class="product-info">
@@ -276,7 +297,7 @@ function openQuickViewModal(productId) {
   qvImg.src = qvProduct.image;
   qvImg.removeAttribute('data-tried-online');
   qvImg.onerror = function() {
-    handleCakeImgError(this, qvProduct.category);
+    handleCakeImgError(this, qvProduct.id);
   };
 
   document.getElementById('qvBadge').textContent = qvProduct.badge || '1kg Whipped Cream';

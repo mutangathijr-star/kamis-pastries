@@ -43,14 +43,18 @@ body.dark-mode {
   --card-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
 }
 
-/* Base Reset */
-* {
+/* Base Reset & Strict Mobile Viewport Overflow Lock */
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-html {
+html, body {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+  position: relative;
   scroll-behavior: smooth;
 }
 
@@ -60,15 +64,15 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
   transition: var(--transition-theme);
-  overflow-x: hidden;
-  padding-bottom: 60px; /* Space for sticky WhatsApp bar */
+  padding-bottom: 74px; /* Space for sticky bottom WhatsApp bar */
 }
 
 .container {
   max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 24px;
   width: 100%;
+  margin: 0 auto;
+  padding: 0 16px;
+  box-sizing: border-box;
 }
 
 a {
