@@ -1,6 +1,6 @@
 // FRONTEND STOREFRONT CONTROLLER - KAMI'S PASTRY HAVEN
 
-const CURRENT_DB_VERSION = "v9_fixed_all_25_cake_photos";
+const CURRENT_DB_VERSION = "v10_guaranteed_cake_photos_no_cats_no_cache";
 
 const SVG_FALLBACK_CAKE = "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23F6F0EC'/%3E%3Cpath d='M100 220 L300 220 L280 150 L120 150 Z' fill='%23C39B62'/%3E%3Cpath d='M120 150 L280 150 L260 100 L140 100 Z' fill='%23E5C397'/%3E%3Ccircle cx='200' cy='85' r='15' fill='%23C94A4A'/%3E%3Ctext x='200' y='260' font-family='serif' font-size='20' fill='%232B1D19' text-anchor='middle'%3EKami's Pastry Haven%3C/text%3E%3C/svg%3E";
 
@@ -19,7 +19,7 @@ const UNIQUE_FALLBACK_URLS = {
   "12": "https://images.unsplash.com/photo-1562777717-dc6984f65a63?w=600&auto=format&fit=crop",
   "13": "https://images.unsplash.com/photo-1557925923-cd4648e211a0?w=600&auto=format&fit=crop",
   "14": "https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?w=600&auto=format&fit=crop",
-  "15": "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=600&auto=format&fit=crop",
+  "15": "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=600&auto=format&fit=crop",
   "16": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&auto=format&fit=crop",
   "17": "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=600&auto=format&fit=crop",
   "18": "https://images.unsplash.com/photo-1582293041079-7814c2f12063?w=600&auto=format&fit=crop",
@@ -133,7 +133,9 @@ async function loadProducts() {
 }
 
 function loadProductsFallback() {
-  products = JSON.parse(localStorage.getItem('kamis_db_products')) || INITIAL_PRODUCTS;
+  localStorage.setItem('kamis_db_products', JSON.stringify(INITIAL_PRODUCTS));
+  localStorage.setItem('kamis_db_version', CURRENT_DB_VERSION);
+  products = INITIAL_PRODUCTS;
 }
 
 async function loadStoreConfig() {
