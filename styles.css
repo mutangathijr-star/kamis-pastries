@@ -185,15 +185,17 @@ h1, h2, h3, h4 {
   color: var(--text-primary);
 }
 
-.logo-icon {
-  width: 28px;
-  height: 28px;
-  color: var(--gold-accent);
+.brand-logo-img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: contain;
+  box-shadow: 0 2px 8px rgba(195, 155, 98, 0.25);
   transition: var(--transition-smooth);
 }
 
-.logo:hover .logo-icon {
-  transform: rotate(-10deg) scale(1.1);
+.logo:hover .brand-logo-img {
+  transform: scale(1.1) rotate(-5deg);
 }
 
 .logo-accent {
