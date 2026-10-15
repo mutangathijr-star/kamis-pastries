@@ -1,6 +1,6 @@
 // FRONTEND STOREFRONT CONTROLLER - KAMI'S PASTRY HAVEN
 
-const CURRENT_DB_VERSION = "v11_all_25_verified_cake_photos_final";
+const CURRENT_DB_VERSION = "v12_real_kamis_pastries_photos_2026";
 
 const SVG_FALLBACK_CAKE = "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23F6F0EC'/%3E%3Cpath d='M100 220 L300 220 L280 150 L120 150 Z' fill='%23C39B62'/%3E%3Cpath d='M120 150 L280 150 L260 100 L140 100 Z' fill='%23E5C397'/%3E%3Ccircle cx='200' cy='85' r='15' fill='%23C94A4A'/%3E%3Ctext x='200' y='260' font-family='serif' font-size='20' fill='%232B1D19' text-anchor='middle'%3EKami's Pastry Haven%3C/text%3E%3C/svg%3E";
 
